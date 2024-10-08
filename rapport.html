@@ -1858,88 +1858,32 @@
                 <div>
                     <h3 class="subsection-title">Besoins matériels</h3>
                     <p>
-                        <em>Pour la réalisation de ce projet, il faudra un serveur pour héberger l'application MaVillw,
-                            gérer les requêtes des utilisateurs et stocker leurs données.</em>
+                        <em>Pour la réalisation de ce projet, il faudra un serveur pour héberger l'application MaVille,
+                            gérer les requêtes des utilisateurs et stocker leurs données.<br>
+                            Le serveur sera coder en java avec une architecture simple (client,serveur).<br>
+                            Un laptop est aussi nécessaire pour pouvoir lancer l'application.</em>
                     </p>
-                    <ul>
-                        <li><strong>Serveur principal</strong> : Héberge le backend de l'application.</li>
-                        <li><strong>Serveur pour la base de données</strong> : Stocke les données des utilisateurs et des
-                            projets.</li>
-                        <li><strong>Serveur de fichiers</strong> : Stocke des fichiers multimédias
-                            (images, documents) soumis par les utilisateurs.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="subsection-title">Équipements de réseau</h3>
-                    <ul>
-                        <li><strong>Routeurs et commutateurs</strong> : Assurent une communication fluide entre les
-                            serveurs et les utilisateurs.</li>
-                        <li><strong>Pare-feu</strong> : Protège l'infrastructure contre les cyberattaques.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="subsection-title">Infrastructure de stockage</h3>
-                    <ul>
-                        <li><strong>Disques durs ou SSD</strong> : Utilisés pour stocker les données de l'application (données des utilisateurs, des intervenants, des projets, etc.).</li>
-                        <li><strong>Systèmes de sauvegarde</strong> : Garantissent des sauvegardes régulières des
-                            données critiques.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="subsection-title">Systèmes de sécurité</h3>
-                    <ul>
-                        <li><strong>Logiciels antivirus</strong> : Protègent les serveurs et les appareils utilisateurs
-                            contre les menaces.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="subsection-title">Alimentation et environnement</h3>
-                    <ul>
-                        <li><strong>Alimentation sans coupure</strong> : Garantit le fonctionnement continu en cas
-                            de coupure de courant.</li>
-                        <li><strong>Climatisation</strong> : Maintient une température optimale pour les
-                            équipements.</li>
-                    </ul>
                 </div>
                 <div>
                     <h3 class="subsection-title">Solution de stockage</h3>
                     <p>
-                        <em>La solution de stockage pour l'application MaVille est conçue pour garantir la sécurité et
-                            l'accessibilité des données.</em>
+                        <em>La solution d'intégration pour l'application MaVille comprend la création d'un serveur simple en Java qui gérera les requêtes des utilisateurs et interagira avec les systèmes <br>
+                            existants, tels que le service Info entraves et travaux de la ville. Ce serveur sera capable de recevoir des commandes pour stocker, récupérer et mettre à jour les informations <br>
+                            relatives aux projets et aux demandes des utilisateurs. Les données seront stockées dans un fichier au format texte, JSON ou XML, permettant une gestion flexible et structurée <br>
+                            des informations. En utilisant des sockets, on pourra établir une communication efficace entre le client (l'application MaVille) et le serveur. Cela permettra à l'application de <br>
+                            centraliser les données et de les synchroniser en temps réel avec les services municipaux. De plus, le serveur garantira la sécurité et l'accessibilité des données en traitant les <br>
+                            requêtes de manière sécurisée et en maintenant un accès facile aux informations nécessaires pour les utilisateurs de l'application..</em>
                     </p>
-                    <ul>
-                        <li><strong>Base de données</strong> : L'application utilisera une base de données pour stocker
-                            les informations des utilisateurs, les projets et les requêtes. Cela permettra de gérer les
-                            données de manière efficace.</li>
-                        <li><strong>Stockage en ligne</strong> : Des services de stockage en ligne seront utilisés pour
-                            sauvegarder les fichiers multimédias, comme les images et les documents liés aux projets.
-                            Cela assurera un accès facile et sécurisé.</li>
-                        <li><strong>Sauvegardes régulières</strong> : Des sauvegardes seront effectuées régulièrement
-                            pour s'assurer que toutes les données sont protégées et peuvent être restaurées en cas de
-                            besoin.</li>
-                    </ul>
                 </div>
                 <div>
                     <h3 class="subsection-title">Solution d'intégration</h3>
                     <p>
-                        <em>La solution d'intégration pour l'application MaVille vise à garantir une communication
-                            efficace entre les différents utilisateurs et les systèmes externes. Voici les principaux
-                            aspects :</em>
+                        <em>L'intégration de l'application MaVille avec des services municipaux, comme le service Info entraves et travaux, consiste à étudier comment connecter efficacement les deux systèmes.<br>
+                            Par exemple, on pourrait utiliser des API qui permettraient à MaVille de recevoir automatiquement des informations sur les travaux et fermetures de routes en temps réel.<br>
+                            Ensuite, l'application pourrait afficher ces données de manière claire pour les utilisateurs et leur envoyer des notifications basées sur leur position.<br>
+                            Cela simplifierait la vie des citoyens en leur donnant accès à des informations actualisées directement sur leur smartphone,<br>
+                            tout en facilitant la gestion des flux d'information pour la ville. </em>
                     </p>
-                    <ul>
-                        <li><strong>API</strong> : L'application utilisera une interface API pour permettre aux citoyens
-                            et aux intervenants de soumettre des informations et de consulter les données sur les
-                            travaux.</li>
-                        <li><strong>Notifications en temps réel</strong> : Des notifications seront envoyées aux
-                            utilisateurs pour les tenir informés des mises à jour importantes concernant les travaux et
-                            les requêtes.</li>
-                        <li><strong>Connexion avec d'autres services</strong> : L'application pourra se connecter à
-                            d'autres outils et services, comme des plateformes de communication ou de cartographie, pour
-                            enrichir l'expérience des utilisateurs.</li>
-                        <li><strong>Gestion des accès</strong> : Des systèmes de sécurité seront mis en place pour
-                            s'assurer que seules les personnes autorisées peuvent accéder à certaines fonctionnalités de
-                            l'application.</li>
-                    </ul>
                 </div>
             </section>
 
