@@ -2,7 +2,7 @@
 
 # Échéancier
 
-# Glossaire (31 points)
+# Glossaire 
 - Application MaVille.
 - Info entraves et Travaux.
 - Type de problème, signaler un problème.
@@ -15,20 +15,20 @@ Les termes mentionnés ci-dessus sont des termes importants qui devraient être 
 
 Les termes mentionnés ci-dessus sont jugés non pertinents pour votre glossaire. Les termes de votre glossaire doivent être en relation avec la description de votre projet et présents dans la description du rapport.
 
-# Diagramme de cas d'utilisation (37 points)
-### Respect du formalisme (10 points)
+# Diagramme de cas d'utilisation 
+### Respect du formalisme 
 - Le formalisme des diagrammes de CU est bien respecté.
-### Identification des acteurs (7 points)
+### Identification des acteurs 
 - L'acteur **serveur** n'est pas nécessaire et n'est visible dans aucun CU du diagramme.
 - On aurait pu créer une généralisation entre le **résident** et l'**intervenant** et leur attribuer les CUs **inscription** et **authentification**.
 - L'acteur secondaire **ville** est manquant : il aurait pour rôle d'aider à la réalisation de certains CUs comme : **s'inscrire comme intervenant**, **signaler un problème**.
-### Cas d'utilisation (25 points)
+### Cas d'utilisation 
 - **Répondre à une candidature** :
     - Si on soumet une requête, on doit pouvoir accepter ou refuser les candidatures des intervenants.
 - **Soumettre sa candidature** :
     - Un intervenant doit pouvoir soumettre sa candidature pour les requêtes faites par les résidents.
 
-# Scénarios (80 points)
+# Scénarios 
 - **S'authentifier comme résident** :
     - Précondition :
         - Pas besoin de mentionner **Aucune précondition pour l'inscription** car le CU concerne l'authentification et non l'inscription.
@@ -95,40 +95,40 @@ Les termes mentionnés ci-dessus sont jugés non pertinents pour votre glossaire
         - La postcondition sera : **Le système affiche la liste des requêtes de travail**.
     - Toutes les étapes après l'étape 2 ne sont pas nécessaires, car à l'étape 2 notre objectif est réalisé. Notre but ici est de consulter la liste des requêtes, et non une requête en particulier.
 
-# Diagramme d'activités (45 points)
-### Respect du formalisme (20 points)
+# Diagramme d'activités 
+### Respect du formalisme 
 - Le formalisme des diagrammes d'activité est bien respecté.
-### Contenu du diagramme (25 points)
+### Contenu du diagramme 
     - Voir le feedback des diagrammes dans le fichier feedback diagramme.
 
-# Analyse 📈 (55 points)
-#### Risques (20 points)
+# Analyse 📈 
+#### Risques 
 - **Risque d'authentification non sécurisée** :
     - Ce n'est pas vraiment un risque, c'est juste que les développeurs ont mal fait leur travail. Les développeurs doivent écrire du code qui s'assure que l'utilisateur a un bon mot de passe.
-#### Besoins non fonctionnels (25 points)
+#### Besoins non fonctionnels 
  - Les besoins non fonctionnels choisis sont justes et bien expliqués.
 
-#### Besoins matériels (5 points)
+#### Besoins matériels 
  - La solution pour les besoins matériels est super.
  - Tout est bien mentionné : le déploiement, l'hébergement, etc.
-#### Solution de stockage (5 points)
+#### Solution de stockage 
     - Idem pour la solution de stockage.
 
-#### Solutions d'intégration (5 points)
+#### Solutions d'intégration 
     - Idem pour la solution d'intégration.
 
-# Prototype (10 points)
+# Prototype 
 - Le prototype fonctionne bien, ne génère pas d'erreur.
 
-# Git (5 points)
+# Git 
     - Le README dans le document décrit bien le projet.
     - Un release a été fait.
     - Tous les membres de l'équipe ont fait des commits.
 
-# Rapports (5 points)
+# Rapports 
     - Rien à redire pour
 
  le rapport.
     - Les images s'affichent bien et sont à la bonne dimension.
 
-# Bonus (0 points)
+# Bonus
