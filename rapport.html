@@ -16,7 +16,8 @@
             font: normal 10px 'Segoe UI', 'Droid Sans', Ubuntu, 'Lucida Grande', Arial, Helvetica, sans-serif;
             scroll-behavior: smooth;
             background: #f5f5f5;
-            overflow-x: hidden;
+            overflow-x: scroll;
+            width: 100vw;
         }
 
         h1, h2 { margin: 0; }
@@ -299,6 +300,7 @@
             }
 
         .report-main {
+            width: calc(100% - 300px);
             padding-top: 24px; padding-left: 2%; padding-right: 5vw;
         }
 
@@ -1817,6 +1819,10 @@
                     <h4>Accéder aux notifications</h4>
                     <img class="activity-diagram" src="images/diagrammeCU8.svg" alt="Diagramme d'activités 8">
                 </div>
+                <div class="activity">
+                    <h4>Modifier son profil</h4>
+                    <img class="activity-diagram" src="images/diagrammeCU9.svg" alt="Diagramme d'activités 9">
+                </div>
             </section>
 
             <section class="main-section">
@@ -1864,15 +1870,16 @@
                             les données désirables et celles qui ne correspondent pas à ce que le serveur doit utilisé seront considérées invalides
                             et ne seront pas utilisées.
                         </li>
-                        <li><B>Risque d'authentification non sécurisée.</B><br>
-                            Si l'utilisateur a un mot de passe simple, il serait facilement possible pour des personnes malveillantes de le trouver
-                            et de se connecter sur le compte de l'utilisateur. De plus, même si le mot de passe est complexe, il serait possible de trouver le
-                            de passe par la "brute force", c'est-à-dire plusieurs tentatives d'authentification à la suite jusqu'à ce que la connexion fonctionne.
+                        <li><B>Risque de dépendance sur des services externes.</B><br>
+                            Si <em>MaVille</em> dépend entièrement des APIs et de services tiers pour ses informations et ses données, il serait possible que
+                            l'application soit inutilisable en cas de problèmes avec ces services. Les informations sur les travaux et les entraves seraient inaccessibles
+                            et l'application ne pourrait plus desservir les citoyens. On ne peut donc pas entièrement dépendre des ces systèmes, on doit avoir l'information
+                            aussi souvent et simplement que possible.
                             <br>
                             <B>Solution</B><br>
-                            Il faudrait tout d'abord mettre certains critères nécessaires lors de la création d'un mot de passe de sorte à avoir un mot de passe
-                            assez complexe et sécuritaire. Il faudrait aussi mettre en place un nombre maximal de tentatives d'authentification dans une certaine période de temps pour éviter que 
-                            le mot de passe puisse être trouvé en essayant consécutivement plusieurs mots de passe.
+                            Il faudrait faire en sorte de conserver les informations fournies par les services externes et les APIs dans la base de données de sorte
+                            à avoir accès à celles-ci même en cas de panne chez ces services. Évidemment, elles ne seraient pas mis à jour dans ce laps de temps, mais au minimum
+                            les informations seraient accessibles et les citoyens seraient en mesure de s'y fier quand même. 
                         </li>
                     </ol>
                 </div>
