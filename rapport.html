@@ -682,6 +682,15 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <h3 class="nav-item-title"><a class="nav-item-title__link" href="#conception">Conception</a></h3>
+                        <ul class="bare-list nav-item-details">
+                            <li class="dash">Architecture</li>
+                            <li class="dash">Diagramme de classes</li>
+                            <li class="dash">Diagrammes de séquence</li>
+                            <li class="dash">Choix du design</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
                         <h3 class="nav-item-title"><a class="nav-item-title__link" href="#prototype">Prototype</a> </h3>
                     </li>
                 </ul>
@@ -705,7 +714,7 @@
                 <p>
                     La colonne 'Contributeurs' contient les intiales de ceux ayant participer aux tâches contenues dans chacune des rangées.
                     <div class="imgbox">
-                        <img class="center-fit" src="images/échéancier.png" alt="Échéancier">
+                        <img class="center-fit" src="diagrammes/échéancier.png" alt="Échéancier">
                     </div>
                 </p>
             </section>
@@ -816,7 +825,7 @@
              
                 <h3 class="subsection-title">Cas d'utilisation</h3>
                 <div class="use-case">
-                    <img class="use-case-diagram" src="images/DiagrammeCUs.svg" alt="Diagramme de cas d'utilisation">
+                    <img class="use-case-diagram" src="diagrammes/DiagrammeCUs.svg" alt="Diagramme de cas d'utilisation">
                     <div class="use-case-notes">
                         <h4 class="subsection-title"> À propos des acteurs </h4>
                         <p> 
@@ -831,8 +840,7 @@
                         <p> 
                             Tous les cas d'utilisation du résident et de l'intervenant incluent l'inscription/l'authentification, car 
                             celle-ci est nécessaire afin d'accéder au reste de l'application et, ultimement, aux actions possibles. Toutes les autres relations
-                            sont les relations d'association du résident et de l'intervenant. On note aussi que le serveur est relié à chacun
-                            des cas d'utilisation de l'application, car il intéragit toujours avec les acteurs, peu importe l'action réalisée.
+                            sont les relations d'association du résident et de l'intervenant.
                         </p>
                     </div>
                 </div>
@@ -854,7 +862,6 @@
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
                                 <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
                             </ul>
                         </div>
 
@@ -886,14 +893,14 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident ouvre l'application <em>MaVille</em>.</li>
-                            <li class="scenario-main-step">Le serveur affiche l'écran d'authentification.</li>
+                            <li class="scenario-main-step">Le système affiche l'écran d'authentification.</li>
                             <li class="scenario-main-step">Le résident sélectionne l'option pour se connecter.</li>
-                            <li class="scenario-main-step">Le serveur affiche l'écran de connexion.</li>
+                            <li class="scenario-main-step">Le système affiche l'écran de connexion.</li>
                             <li class="scenario-main-step">Le résident entre son adresse courriel et son mot de passe pour se connecter.</li>
                             <li class="scenario-main-step">Le résident appuie sur le bouton pour se connecter.</li>
-                            <li class="scenario-main-step">Le serveur valide les informations entrées.</li>
+                            <li class="scenario-main-step">Le système valide les informations entrées.</li>
                             <li class="scenario-main-step">Le résident est connecté à l'application.</li>
-                            <li class="scenario-main-step">Le serveur affiche le menu principal.</li>
+                            <li class="scenario-main-step">Le système affiche le menu principal.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -902,18 +909,18 @@
                                 <li class="scenario-alt-step" value="3">
                                     Le résident sélectionne l'option pour s'inscrire.
                                     <ol class="bare-list">
-                                        <li value="3">Le serveur affiche l'écran d'inscription</li>
+                                        <li value="3">Le système affiche l'écran d'inscription</li>
                                         <li value="3">Le résident entre toutes les informations demandées.</li>
                                         <li value="3">Le résident appuie sur le bouton pour s'inscrire.</li>
-                                        <li value="3">Le serveur enregistre les informations entrées.</li>
+                                        <li value="3">Le système enregistre les informations entrées.</li>
                                         <li value="3">Le résident est connecté à l'application.</li>
-                                        <li value="3">Le serveur affiche le menu principal.</li>
+                                        <li value="3">Le système affiche le menu principal.</li>
                                     </ol>
                                 </li>
                                 <li class="scenario-alt-step" value="7">
-                                    Le serveur ne valide pas les informations entrées.
+                                    Le système ne valide pas les informations entrées.
                                     <ol class="bare-list">
-                                        <li value="7">Le serveur affiche un message d'erreur à l'utilisateur.</li>
+                                        <li value="7">Le système affiche un message d'erreur à l'utilisateur.</li>
                                         <li value="7">Le scénario reprend à l'étape 5.</li>
                                     </ol>
                                 </li>
@@ -936,8 +943,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Résident (Principal)</li>                               
                             </ul>
                         </div>
 
@@ -968,16 +974,16 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option pour accéder au répertoire des travaux.</li>
-                            <li class="scenario-main-step">Le serveur ouvre le répertoire des travaux, dans l'onglet 'en cours'.</li>
-                            <li class="scenario-main-step">Le serveur affiche la liste des travaux en cours par ancienneté croissante.</li>
+                            <li class="scenario-main-step">Le système ouvre le répertoire des travaux, dans l'onglet 'en cours'.</li>
+                            <li class="scenario-main-step">Le système affiche la liste des travaux en cours par ancienneté croissante.</li>
                             <li class="scenario-main-step">Le résident demeure sur l'onglet actuel.</li>
                             <li class="scenario-main-step">Le résident entre des critères de recherche.</li>
-                            <li class="scenario-main-step">Le serveur affiche la liste des travaux correspondants à la recherche.</li>
+                            <li class="scenario-main-step">Le système affiche la liste des travaux correspondants à la recherche.</li>
                             <li class="scenario-main-step">Le résident sélectionne un travail.</li>
                             <li class="scenario-main-step">Le résident clique sur le bouton en cloche pour activer les notifications.</li>
-                            <li class="scenario-main-step">Le serveur indique que les notifcations pour le travail sont activées.</li>
+                            <li class="scenario-main-step">Le système indique que les notifcations pour le travail sont activées.</li>
                             <li class="scenario-main-step">Le résident clique sur le travail sélectionné.</li>
-                            <li class="scenario-main-step">Le serveur affiche les détails du travail sélectionné.</li>
+                            <li class="scenario-main-step">Le système affiche les détails du travail sélectionné.</li>
 
                         </ol>
 
@@ -987,7 +993,7 @@
                                 <li class="scenario-alt-step" value="4">
                                     Le résident sélectionne l'onglet 'à venir'.
                                     <ol class="bare-list">
-                                        <li value="4">Le serveur affiche tous les travaux à venir dans les trois prochains mois.</li>
+                                        <li value="4">Le système affiche tous les travaux à venir dans les trois prochains mois.</li>
                                         <li value="4">Le scénario reprend à l'étape 5.</li>
                                     </ol>
                                 </li>
@@ -1000,7 +1006,7 @@
                                 <li class="scenario-alt-step" value="6">
                                     Il n'y a aucun résultat.
                                     <ol class="bare-list">                                        
-                                        <li value="6">Le serveur indique à l'utilisateur qu'aucun travail ne correspond à la recherche.</li>
+                                        <li value="6">Le système indique à l'utilisateur qu'aucun travail ne correspond à la recherche.</li>
                                         <li value="6">Le scénario se termine.</li>
                                     </ol>
                                 </li>
@@ -1029,8 +1035,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Résident (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1060,11 +1065,11 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option 'Soumission d'une requête de travail'.</li>
-                            <li class="scenario-main-step">Le serveur affiche le formulaire à remplir.</li>                            
+                            <li class="scenario-main-step">Le système affiche le formulaire à remplir.</li>                            
                             <li class="scenario-main-step">Le résident remplit le formulaire en détaillant sa requête.</li>
                             <li class="scenario-main-step">Le résident ajoute des pièces jointes si nécessaire.</li>
                             <li class="scenario-main-step">Le résident soumet la requête.</li>
-                            <li class="scenario-main-step">Le serveur rend la requête visible aux intervenants.</li>
+                            <li class="scenario-main-step">Le système rend la requête visible aux intervenants.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1073,7 +1078,7 @@
                                 <li class="scenario-alt-step" value="5">
                                     Le formulaire est incomplet.
                                     <ol class="bare-list">
-                                        <li value="5">Le serveur demande au résident de remplir tous les champs
+                                        <li value="5">Le système demande au résident de remplir tous les champs
                                             obligatoires.</li>
                                         <li value="5">Le résident complète les informations manquantes.</li>
                                         <li value="5">Le scénario reprend à l'étape 5.</li>        
@@ -1082,7 +1087,7 @@
                                 <li class="scenario-alt-step" value="6">
                                     Pièces jointes trop volumineuses.
                                     <ol class="bare-list">
-                                        <li value="6">Le serveur informe le résident que les pièces jointes dépassent la
+                                        <li value="6">Le système informe le résident que les pièces jointes dépassent la
                                             taille maximale autorisée.</li>
                                         <li value="6">Le résident remplace ou supprime les fichiers.</li>
                                         <li value="6">Le scénario reprend à l'étape 5.</li>     
@@ -1107,8 +1112,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Résident (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1138,11 +1142,11 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option 'Suivi des requêtes de travail'.</li>
-                            <li class="scenario-main-step">Le serveur affiche la liste des requêtes.</li>                            
+                            <li class="scenario-main-step">Le système affiche la liste des requêtes.</li>                            
                             <li class="scenario-main-step">Le résident clique sur une requête.</li>
-                            <li class="scenario-main-step">Le serveur affiche l'état de la requête.</li>
+                            <li class="scenario-main-step">Le système affiche l'état de la requête.</li>
                             <li class="scenario-main-step">Le résident accepte la candidature déposée par un intervenant.</li>
-                            <li class="scenario-main-step">Le serveur met à jour la requête et la marque comme terminée.</li>
+                            <li class="scenario-main-step">Le système met à jour la requête et la marque comme terminée.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1151,11 +1155,11 @@
                                 <li class="scenario-alt-step" value="5">
                                     Le résident refuse la candidature présente.
                                     <ol class="bare-list">
-                                        <li value="5">Le serveur met à jour la requête et retire la candidature; la requête est de nouveau disponible pour les intervenants.</li>                                           
+                                        <li value="5">Le système met à jour la requête et retire la candidature; la requête est de nouveau disponible pour les intervenants.</li>                                           
                                     </ol>
                                 </li>
                                 <li class="scenario-alt-step" value="5">
-                                    Le serveur indique qu'il n'y aucune candidature pour cette requête.
+                                    Le système indique qu'il n'y aucune candidature pour cette requête.
                                     <ol class="bare-list">                                                                            
                                         <li value="5">Le scénario se termine.</li>     
                                     </ol>
@@ -1179,8 +1183,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Résident (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1210,12 +1213,12 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option 'Préférences de plage horaire'.</li>
-                            <li class="scenario-main-step">Le serveur affiche la liste des préférences de plage horaire déjà envoyées dans son quartier ainsi qu'un bouton pour envoyer ses préférences.</li>                            
+                            <li class="scenario-main-step">Le système affiche la liste des préférences de plage horaire déjà envoyées dans son quartier ainsi qu'un bouton pour envoyer ses préférences.</li>                            
                             <li class="scenario-main-step">Le résident clique sur le bouton pour envoyer ses préférences.</li>
-                            <li class="scenario-main-step">Le serveur affiche la boîte texte à remplir.</li>
+                            <li class="scenario-main-step">Le système affiche la boîte texte à remplir.</li>
                             <li class="scenario-main-step">Le résident rédige ses préférences de plage horaire.</li>
                             <li class="scenario-main-step">Le résident soumet ses préférences.</li>
-                            <li class="scenario-main-step">Le serveur met à jour la page pour afficher les préférences nouvellement ajoutées.</li>
+                            <li class="scenario-main-step">Le système met à jour la page pour afficher les préférences nouvellement ajoutées.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1228,7 +1231,7 @@
                                     </ol>
                                 </li>
                                 <li class="scenario-alt-step" value="6">
-                                    Le serveur indique au résident que le formulaire est incomplet.
+                                    Le système indique au résident que le formulaire est incomplet.
                                     <ol class="bare-list">
                                         <li value="6">Le scénario reprend à l'étape 5.</li>
                                     </ol>
@@ -1252,8 +1255,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Résident (Principal)</li>                               
                             </ul>
                         </div>
 
@@ -1283,14 +1285,14 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option 'Avis sur les travaux'.</li>
-                            <li class="scenario-main-step">Le serveur affiche la liste des travaux terminés dans le quartier.</li>
+                            <li class="scenario-main-step">Le système affiche la liste des travaux terminés dans le quartier.</li>
                             <li class="scenario-main-step">Le résident clique sur un travail.</li>
-                            <li class="scenario-main-step">Le serveur affiche tous les avis déjà présents pour ce travail ainsi qu'un bouton pour envoyer un avis.</li>
+                            <li class="scenario-main-step">Le système affiche tous les avis déjà présents pour ce travail ainsi qu'un bouton pour envoyer un avis.</li>
                             <li class="scenario-main-step">Le résident clique sur le bouton pour envoyer son avis.</li>
-                            <li class="scenario-main-step">Le serveur affiche la boîte texte à remplir.</li>
+                            <li class="scenario-main-step">Le système affiche la boîte texte à remplir.</li>
                             <li class="scenario-main-step">Le résident rédige son commentaire quant au travail.</li>
                             <li class="scenario-main-step">Le résident soumet son avis.</li>
-                            <li class="scenario-main-step">Le serveur met à jour la liste d'avis en ajoutant le nouvel avis.</li>
+                            <li class="scenario-main-step">Le système met à jour la liste d'avis en ajoutant le nouvel avis.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1303,7 +1305,7 @@
                                     </ol>
                                 </li>
                                 <li class="scenario-alt-step" value="8">
-                                    Le serveur indique au résident que le formulaire est incomplet.
+                                    Le système indique au résident que le formulaire est incomplet.
                                     <ol class="bare-list">
                                         <li value="8">Le scénario reprend à l'étape 7.</li>
                                     </ol>
@@ -1327,8 +1329,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Résident (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1357,11 +1358,11 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">L'intervenant sélectionne l'option pour signaler un problème.</li>
-                            <li class="scenario-main-step">Le serveur affiche un formulaire à remplir.</li>
+                            <li class="scenario-main-step">Le système affiche un formulaire à remplir.</li>
                             <li class="scenario-main-step">Le résident remplit le formulaire avec les informations demandées.</li>
                             <li class="scenario-main-step">Le résident ajoute des pièces jointes si nécessaire.</li>
                             <li class="scenario-main-step">Le résident soumet le signalement.</li>
-                            <li class="scenario-main-step">Le serveur achemine le formulaire rempli à la ville de Montréal.</li>
+                            <li class="scenario-main-step">Le système achemine le formulaire rempli à la ville de Montréal.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1370,7 +1371,7 @@
                                 <li class="scenario-alt-step" value="5">
                                     Le formulaire est incomplet.
                                     <ol class="bare-list">
-                                        <li value="5">Le serveur demande au résident de remplir tous les champs
+                                        <li value="5">Le système demande au résident de remplir tous les champs
                                             obligatoires.</li>
                                         <li value="5">Le résident complète les informations manquantes.</li>
                                         <li value="5">Le scénario reprend à l'étape 5.</li>        
@@ -1379,7 +1380,7 @@
                                 <li class="scenario-alt-step" value="5">
                                     Pièces jointes trop volumineuses.
                                     <ol class="bare-list">
-                                        <li value="5">Le serveur informe le résident que les pièces jointes dépassent la
+                                        <li value="5">Le système informe le résident que les pièces jointes dépassent la
                                             taille maximale autorisée.</li>
                                         <li value="5">Le résident remplace ou supprime les fichiers.</li>
                                         <li value="5">Le scénario reprend à l'étape 5.</li>     
@@ -1404,8 +1405,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Résident (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1433,11 +1433,11 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option pour accéder aux notifications.</li>
-                            <li class="scenario-main-step">Le serveur affiche l'ensemble des notifications reçues.</li>
+                            <li class="scenario-main-step">Le système affiche l'ensemble des notifications reçues.</li>
                             <li class="scenario-main-step">Le résident clique sur une notification pour accéder aux informations du chantier concerné.</li>
-                            <li class="scenario-main-step">Le serveur affiche les changements apportés au travail concerné.</li>
+                            <li class="scenario-main-step">Le système affiche les changements apportés au travail concerné.</li>
                             <li class="scenario-main-step">Le résident clique sur le bouton pour voir plus d'informations.</li>
-                            <li class="scenario-main-step">Le serveur affiche l'ensemble des informations du travail.</li>
+                            <li class="scenario-main-step">Le système affiche l'ensemble des informations du travail.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1446,7 +1446,7 @@
                                 <li class="scenario-alt-step" value="2">
                                     Le résident n'a aucune notification.
                                     <ol class="bare-list">
-                                        <li value="2">Le serveur indique que l'utilisateur a aucune notification.</li>
+                                        <li value="2">Le système indique que l'utilisateur a aucune notification.</li>
                                         <li value="2">Le scénario se termine.</li>     
                                     </ol>
                                 </li>
@@ -1457,9 +1457,9 @@
                                     </ol>
                                 </li>
                                 <li class="scenario-alt-step" value="6">
-                                    Le serveur n'affiche pas les informations.
+                                    Le système n'affiche pas les informations.
                                     <ol class="bare-list">
-                                        <li value="6">Le serveur indique que le travail a été supprimé du répertoire de travaux.</li>
+                                        <li value="6">Le système indique que le travail a été supprimé du répertoire de travaux.</li>
                                         <li value="6">Le scénario se termine.</li>     
                                     </ol>
                                 </li>
@@ -1483,7 +1483,7 @@
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
                                 <li class="cu-actor">Intervenant (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Ville (Secondaire)</li>                                
                             </ul>
                         </div>
 
@@ -1515,14 +1515,14 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">L'intervenant ouvre l'application <em>MaVille</em>.</li>
-                            <li class="scenario-main-step">Le serveur affiche l'écran d'authentification.</li>
+                            <li class="scenario-main-step">Le système affiche l'écran d'authentification.</li>
                             <li class="scenario-main-step">L'intervenant sélectionne l'option pour se connecter.</li>
-                            <li class="scenario-main-step">Le serveur affiche l'écran de connexion.</li>
+                            <li class="scenario-main-step">Le système affiche l'écran de connexion.</li>
                             <li class="scenario-main-step">L'intervenant entre son adresse courriel et son mot de passe pour se connecter.</li>
                             <li class="scenario-main-step">L'intervenant appuie sur le bouton pour se connecter.</li>
-                            <li class="scenario-main-step">Le serveur valide les informations entrées.</li>
+                            <li class="scenario-main-step">Le système valide les informations entrées.</li>
                             <li class="scenario-main-step">L'intervenant est connecté à l'application.</li>
-                            <li class="scenario-main-step">Le serveur affiche le menu principal.</li>
+                            <li class="scenario-main-step">Le système affiche le menu principal.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1531,18 +1531,18 @@
                                 <li class="scenario-alt-step" value="3">
                                     L'intervenant sélectionne l'option pour s'inscrire.
                                     <ol class="bare-list">
-                                        <li value="3">Le serveur affiche l'écran d'inscription.</li>
+                                        <li value="3">Le système affiche l'écran d'inscription.</li>
                                         <li value="3">L'intervenant entre toutes les informations demandées.</li>
                                         <li value="3">L'intervenant clique sur le bouton pour s'inscire.</li>
-                                        <li value="3">Le serveur enregistre les informations entrées.</li>
+                                        <li value="3">Le système enregistre les informations entrées.</li>
                                         <li value="3">L'intervenant est connecté à l'application.</li>
-                                        <li value="3">Le serveur affiche le menu principal.</li>
+                                        <li value="3">Le système affiche le menu principal.</li>
                                     </ol>
                                 </li>
                                 <li class="scenario-alt-step" value="7">
-                                    Le serveur ne valide pas les informations entrées.
+                                    Le système ne valide pas les informations entrées.
                                     <ol class="bare-list">
-                                        <li value="7">Le serveur affiche un message d'erreur à l'utilisateur.</li>
+                                        <li value="7">Le système affiche un message d'erreur à l'utilisateur.</li>
                                         <li value="7">Le scénario reprend à l'étape 4.</li>
                                     </ol>
                                 </li>
@@ -1566,8 +1566,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Intervenant (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Intervenant (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1575,14 +1574,14 @@
                             <h5 class="cu-part-title">Préconditions</h5>
                             <ul class="bare-list cu-conditions">
                                 <li class="dash">Être inscrit et connecté à l'application <em>MaVille</em>.</li>
-                                <li class="dash">Le chantier doit être actif dans le serveur.</li>
+                                <li class="dash">Le chantier doit être actif dans le système.</li>
                             </ul>
                         </div>
 
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Les informations relatives au chantier sont mises à jour dans le serveur.</li>
+                                <li class="dash">Les informations relatives au chantier sont mises à jour dans le système.</li>
                             </ul>
                         </div>
 
@@ -1595,12 +1594,12 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">L'intervenant sélectionne l'option pour mettre à jour un chantier.</li>
-                            <li class="scenario-main-step">Le serveur affiche les travaux en cours.</li>
+                            <li class="scenario-main-step">Le système affiche les travaux en cours.</li>
                             <li class="scenario-main-step">L'intervenant sélectionne le chantier qu'il souhaite mettre à jour.</li>
                             <li class="scenario-main-step">L'intervenant modifie les informations pertinentes.</li>
                             <li class="scenario-main-step">L'intervenant enregistre les modifications.</li>
-                            <li class="scenario-main-step">Le serveur met à jour les informations du travail.</li>
-                            <li class="scenario-main-step">Le serveur envoie une notification aux résidents concernés.</li>
+                            <li class="scenario-main-step">Le système met à jour les informations du travail.</li>
+                            <li class="scenario-main-step">Le système envoie une notification aux résidents concernés.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1609,8 +1608,8 @@
                                 <li class="scenario-alt-step" value="5">
                                     L'intervenant n'enregistre pas les modifications.
                                     <ol class="bare-list">
-                                        <li value="5">Le serveur ne met pas à jour les informations du travail.</li>
-                                        <li value="5">Le serveur n'envoie aucune notification.</li>
+                                        <li value="5">Le système ne met pas à jour les informations du travail.</li>
+                                        <li value="5">Le système n'envoie aucune notification.</li>
                                         <li value="5">Le scénario se termine.</li>
                                     </ol>
                                 </li>
@@ -1633,8 +1632,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Intervenant (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Intervenant (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1664,18 +1662,18 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">L'intervenant sélectionne l'option pour soumettre un nouveau travail.</li>
-                            <li class="scenario-main-step">Le serveur affiche le formulaire à remplir.</li>
+                            <li class="scenario-main-step">Le système affiche le formulaire à remplir.</li>
                             <li class="scenario-main-step">L'intervenant entre le titre du projet, la description, le type du travail, les quartiers affectés,
                                 les rues affectées et l'horaire des travaux.</li>
                             <li class="scenario-main-step">L'intervenant clique sur le bouton pour consulter les préférences des résidents du(es)
                                 quartier(s) affecté(s).</li>
-                            <li class="scenario-main-step">Le serveur affiche les préférences des résidents quant à la plage horaire idéale.</li>
+                            <li class="scenario-main-step">Le système affiche les préférences des résidents quant à la plage horaire idéale.</li>
                             <li class="scenario-main-step">L'intervenant ferme la page et retourne au formulaire.</li>
                             <li class="scenario-main-step">L'intervenant termine le formulaire en entrant la date de début et de fin.</li>
                             <li class="scenario-main-step">L'intervenant ajoute des pièces jointes si nécessaire.</li>
                             <li class="scenario-main-step">L'intervenant soumet le formulaire.</li>
-                            <li class="scenario-main-step">Le serveur informe l'intervenant des conflits avec les préférences des résidents concernés.</li>
-                            <li class="scenario-main-step">Le serveur envoie le formulaire.</li>
+                            <li class="scenario-main-step">Le système informe l'intervenant des conflits avec les préférences des résidents concernés.</li>
+                            <li class="scenario-main-step">Le système envoie le formulaire.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1690,7 +1688,7 @@
                                 <li class="scenario-alt-step" value="9">
                                     Le formulaire est incomplet.
                                     <ol class="bare-list">
-                                        <li value="9">Le serveur demande au résident de remplir tous les champs
+                                        <li value="9">Le système demande au résident de remplir tous les champs
                                             obligatoires.</li>
                                         <li value="9">L'intervenant complète les informations manquantes et envoie à
                                             nouveau le formulaire.</li>
@@ -1700,7 +1698,7 @@
                                 <li class="scenario-alt-step" value="9">
                                     Pièces jointes trop volumineuses.
                                     <ol class="bare-list">
-                                        <li value="9">Le serveur informe le résident que les pièces jointes dépassent la
+                                        <li value="9">Le système informe le résident que les pièces jointes dépassent la
                                             taille maximale autorisée.</li>
                                         <li value="9">Le résident remplace ou supprime les fichiers et envoie à nouveau
                                             le formulaire.</li>
@@ -1726,8 +1724,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Acteurs</h5>
                             <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Intervenant (Principal)</li>
-                                <li class="cu-actor">Serveur (Secondaire)</li>
+                                <li class="cu-actor">Intervenant (Principal)</li>                                
                             </ul>
                         </div>
 
@@ -1757,13 +1754,13 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">L'intervenant sélectionne l'option consulter les requêtes de travail.</li>
-                            <li class="scenario-main-step">Le serveur affiche la liste des requêtes en cours.</li>
+                            <li class="scenario-main-step">Le système affiche la liste des requêtes en cours.</li>
                             <li class="scenario-main-step">L'intervenant entre des critères de recherche.</li>
-                            <li class="scenario-main-step">Le serveur affiche toutes les requêtes correspondantes aux critères.</li>
+                            <li class="scenario-main-step">Le système affiche toutes les requêtes correspondantes aux critères.</li>
                             <li class="scenario-main-step">L'intervenant sélectionne une requête spécifique.</li>
                             <li class="scenario-main-step">L'intervenant pose sa candidature pour la requête sélectionnée.</li>
-                            <li class="scenario-main-step">Le serveur informe l'intervenant que la candidature a été envoyée.</li>
-                            <li class="scenario-main-step">Le serveur met à jour les requêtes de travail en cours.</li>
+                            <li class="scenario-main-step">Le système informe l'intervenant que la candidature a été envoyée.</li>
+                            <li class="scenario-main-step">Le système met à jour les requêtes de travail en cours.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1785,39 +1782,73 @@
                 <h3 class="subsection-title">Diagrammes d'activités</h3>
                 <div class="activity">
                     <h4>Diagramme principal du résident</h4>
-                    <img class="activity-diagram" src="images/diagrammePrincipal.svg" alt="Diagramme principal">
+                    <img class="activity-diagram" src="diagrammes/diagrammePrincipal.svg" alt="Diagramme principal">
                 </div>
                 <div class="activity">
                     <h4>S'authentifier comme résident</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU1.svg" alt="Diagramme d'activités 1">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU1.svg" alt="Diagramme d'activités 1">
                 </div>
                 <div class="activity">
                     <h4>Consulter les travaux</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU2.svg" alt="Diagramme d'activités 2">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU2.svg" alt="Diagramme d'activités 2">
                 </div>
                 <div class="activity">
                     <h4>Soumission d'une une requête de travail</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU3.svg" alt="Diagramme d'activités 3">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU3.svg" alt="Diagramme d'activités 3">
                 </div>
                 <div class="activity">
                     <h4>Suivi des requêtes de travail</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU4.svg" alt="Diagramme d'activités 4">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU4.svg" alt="Diagramme d'activités 4">
                 </div>
                 <div class="activity">
                     <h4>Envoyer ses préférences de plage horaire</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU5.svg" alt="Diagramme d'activités 5">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU5.svg" alt="Diagramme d'activités 5">
                 </div>
                 <div class="activity">
                     <h4>Envoyer son avis sur les travaux terminés</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU6.svg" alt="Diagramme d'activités 6">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU6.svg" alt="Diagramme d'activités 6">
                 </div>
                 <div class="activity">
                     <h4>Accéder aux notifications</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU8.svg" alt="Diagramme d'activités 8">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU8.svg" alt="Diagramme d'activités 8">
                 </div>
                 <div class="activity">
                     <h4>Modifier son profil</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU9.svg" alt="Diagramme d'activités 9">
+                    <img class="activity-diagram" src="diagrammes/diagrammeCU9.svg" alt="Diagramme d'activités 9">
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h2 id="conception" class="section-title">Conception</h2>
+                <div class="activity">
+                    <h4>Architecture</h4>
+                    <img class="activity-diagram" src="" alt="architecture">
+                </div>
+
+                <div class="activity">
+                    <h4>Diagramme de classes</h4>
+                    <img class="activity-diagram" src="diagrammes/class.svg" alt="diagrammeDeClasses">
+                </div>
+
+                <h3 class="subsection-title">Diagrammes de séquence</h3>
+                <div class="activity">
+                    <h4>Consulter les entraves</h4>
+                    <img class="activity-diagram" src="diagrammes/entraves.svg" alt="entraves">
+                </div>
+
+                <div class="activity">
+                    <h4>Soumettre une requête de travail</h4>
+                    <img class="activity-diagram" src="diagrammes/requeteTravail.svg" alt="requeteTravail">
+                </div>
+
+                <div class="activity">
+                    <h4>Consulter la liste des requêtes de travail</h4>
+                    <img class="activity-diagram" src="diagrammes/listeRequeteTravail.svg" alt="listeRequeteTravail">
+                </div>
+
+                <h3 class="subsection-title">Choix du design</h3>
+                <div>
+                    Choix du design ici
                 </div>
             </section>
 
