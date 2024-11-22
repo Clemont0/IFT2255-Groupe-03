@@ -1832,7 +1832,7 @@
                 <h2 id="conception" class="section-title">Conception</h2>
                 <div class="activity">
                     <h4>Architecture</h4>
-                    <img class="activity-diagram" src="" alt="architecture">
+                    <img class="activity-diagram" src="diagrammes/ModelArchitecture.svg" alt="architecture">
                 </div>
 
                 <div id="classdc" class="activity">
@@ -1858,7 +1858,39 @@
 
                 <h3 class="subsection-title">Choix du design</h3>
                 <div>
-                    Choix du design ici
+                    <h2>1. Modèle Client-Serveur</h2>
+                    <p><strong>Justification :</strong> Le choix du modèle client-serveur permet une séparation claire entre la logique métier (serveur) et l'interface utilisateur (client).
+                        Cela facilite la maintenance et rend le serveur réutilisable pour d'autres clients, comme une application mobile.</p>
+                    <ul>
+                        <li><strong>Flexibilité :</strong> Le serveur et le client peuvent évoluer indépendamment.</li>
+                        <li><strong>Centralisation :</strong> Les données sont gérées en un seul endroit pour une meilleure sécurité.</li>
+                        <li><strong>Extensibilité :</strong> Possibilité d'intégrer d'autres services ou clients sans changement majeure.</li>
+                    </ul>
+                    <h2>2. Modularité et Abstraction</h2>
+                    <p><strong>Architecture modulaire :</strong> Le projet est divisé en plusieurs classes avec des responsabilités claires :</p>
+                    <ul>
+                        <li><strong>`ServerApp` :</strong> Gestion du serveur et des endpoints API.</li>
+                        <li><strong>`Main` :</strong> Point d'entrée principal pour l'interface utilisateur CLI.</li>
+                        <li><strong>`MaVille` :</strong> Gestion des connexions et validations d'utilisateurs.</li>
+                        <li><strong>`MaVilleResident` et `MaVilleIntervenant` :</strong> Menus spécifiques pour chaque type d'utilisateur.</li>
+                    </ul>
+                    <h2>3. Stockage des Données</h2>
+                    <p><strong>Choix :</strong> Utilisation d'un fichier JSON local pour le stockage des données.</p>
+                    <p><strong>Justification :</strong> Une solution légère et adaptée à un projet de petite taille avec des données locales.</p>
+                    <h3>Avantages :</h3>
+                    <ul>
+                        <li><strong>Simplicité :</strong> Pas de configuration complexe d'une base de données.</li>
+                        <li><strong>Rapidité d'implémentation :</strong> Le JSON est facilement manipulable.</li>
+                        <li><strong>Localité :</strong> Convient à une application destinée à fonctionner sur une seule machine.</li>
+                    </ul>
+                    <h2>4. Utilisation d'une API REST</h2>
+                    <p><strong>Justification :</strong> L'API REST structure les interactions via des requêtes HTTP standard (GET, POST, etc.),
+                        facilitant l'intégration avec des services tiers et d'autres applications.</p>
+                    <h3>Avantages :</h3>
+                    <ul>
+                        <li><strong>Simplicité :</strong> JSON est léger et facilement manipulable.</li>
+                        <li><strong>Extensibilité :</strong> Ajouter des endpoints supplémentaires est simple.</li>
+                    </ul>
                 </div>
             </section>
 
