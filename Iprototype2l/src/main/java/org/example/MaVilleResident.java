@@ -205,7 +205,10 @@ public class MaVilleResident extends MaVille {
             System.out.println("1. Consulter les travaux en cours ou à venir");
             System.out.println("2. Consulter les entraves");
             System.out.println("3. Soumettre une requête");
-            System.out.println("4. Quitter");
+            System.out.println("4. Rechercher des travaux");
+            System.out.println("5. Recevoir des notifications");
+            System.out.println("6. Permettre une planification participative");
+            System.out.println("7. Quitter");
             System.out.print("Veuillez choisir une option : ");
             try {
                 int choix = Integer.parseInt(scanner.nextLine());
@@ -216,7 +219,13 @@ public class MaVilleResident extends MaVille {
                     afficherEntraves();
                 } else if (choix == 3) {
                     soummettreRequete();
-                } else if (choix == 4){
+                } else if (choix == 4) {
+                    System.out.println("Pas implementer");
+                } else if (choix == 5) {
+                    System.out.println("Pas implementer");
+                } else if (choix == 6) {
+                    System.out.println("Pas implementer");
+                } else if (choix == 7){
                     System.out.println("Au revoir!");
                     break;
                 } else {

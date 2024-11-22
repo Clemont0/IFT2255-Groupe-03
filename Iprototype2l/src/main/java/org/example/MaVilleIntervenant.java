@@ -20,14 +20,21 @@ public class MaVilleIntervenant {
         while (true) {
             System.out.println("\nMenu intervenant :");
             System.out.println("1. Consulter les requêtes de travail");
-            System.out.println("2. Quitter");
+            System.out.println("2. Soumettre un nouveau projet");
+            System.out.println("3. Mettre à jour les informations d'un projet");
+            System.out.println("4. Quitter");
             System.out.print("Veuillez choisir une option : ");
             try {
                 int choix = Integer.parseInt(scanner.nextLine());
 
                 if (choix == 1) {
                     voirRequetes();
-                } else if (choix == 2) {
+                }
+                if (choix == 2) {
+                    System.out.println("Pas implementer");
+                } if (choix == 3) {
+                    System.out.println("Pas implementer");
+                }else if (choix == 4) {
                     System.out.println("Au revoir!");
                     break;
                 } else {

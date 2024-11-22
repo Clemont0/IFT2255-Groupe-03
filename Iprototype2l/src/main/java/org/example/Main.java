@@ -22,7 +22,8 @@ public class Main {
         while (true) {
             System.out.println("\n---------------------- Bienvenue sur MaVille! -----------------------");
             System.out.println("1. Se connecter");
-            System.out.println("2. Quitter");
+            System.out.println("2. S'inscrire");
+            System.out.println(("3. Quitter"));
             System.out.print("Veuillez choisir une option : ");
 
             if (scanner.hasNextInt()) {
@@ -38,14 +39,15 @@ public class Main {
                     System.out.println("Tentative de connexion...");
                     MaVille.seConnecter(courriel, mdp, null);
                 } else if (choix == 2) {
-                    System.out.println("Au revoir !");
+                    System.out.println("Pas implementer");
+                }else if ( choix == 3) {
+                    System.out.println("Au revoir");
+                    ServerApp.stopServer();
                     break;
                 } else {
                     System.out.println("Option invalide. Veuillez réessayer.");
                 }
             } else {
-
-
 
                 System.out.println("Option invalide. Veuillez entrer un nombre valide.");
                 scanner.nextLine(); }

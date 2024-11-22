@@ -17,8 +17,10 @@ import io.javalin.http.Context;
 public class ServerApp {
     private static final String FILE_PATH = "Iprototype2l/src/main/resources/requeteTravaux.json";
     private static final ObjectMapper mapper = new ObjectMapper();
+
+    static Javalin app = Javalin.create().start(7000);
     public static void startServer() {
-        Javalin app = Javalin.create().start(7000);
+
         app.get("/api/login", ctx -> {
             try {
                 JsonObject fichierJson = new JsonObject();
@@ -210,6 +212,15 @@ public class ServerApp {
 
         return entraves;
     }
+
+    public static void stopServer() {
+        if (app != null) {
+            app.stop();
+            System.out.println("Serveur arrêté proprement.");
+        }
+    }
+
+
 
 
 
