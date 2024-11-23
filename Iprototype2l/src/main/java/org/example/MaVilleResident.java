@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 
 public class MaVilleResident extends MaVille {
+    private static final int port = 8000;
     public static void soummettreRequete() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entrez l'ID de la requête :");
@@ -55,7 +56,7 @@ public class MaVilleResident extends MaVille {
         );
 
         try {
-            URL url = new URL("http://localhost:7000/ajouter-requete");
+            URL url = new URL("http://localhost:" + port + "/ajouter-requete");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -90,7 +91,7 @@ public class MaVilleResident extends MaVille {
     }
     public static void afficherTravaux() {
         try {
-            String response = HTTPClient.get("http://localhost:7000/travaux");
+            String response = HTTPClient.get("http://localhost:" + port + "/travaux");
 
             List<Travail> travaux = JSONParser.parseTravaux(response);
 
@@ -115,7 +116,7 @@ public class MaVilleResident extends MaVille {
 
     public static void afficherEntraves() {
         try {
-            String response = HTTPClient.get("http://localhost:7000/entraves");
+            String response = HTTPClient.get("http://localhost:" + port + "/entraves");
 
             List<Entraves> entraves = JSONParser.parseEntrave(response);
 
@@ -125,7 +126,7 @@ public class MaVilleResident extends MaVille {
                 System.out.println("Rue: " + entrave.getStreetId());
                 System.out.println("Nom court: " + entrave.getShortName());
                 System.out.println("Largeur de l'impact: " + entrave.getStreetImpactType());
-                System.out.println(STR."Type d'impact sur la rue: \{entrave.getStreetImpactType()}");
+                System.out.println("Type d'impact sur la rue: " + entrave.getStreetImpactType());
                 System.out.println("-------------------------------");
             }
 

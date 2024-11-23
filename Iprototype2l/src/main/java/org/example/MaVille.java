@@ -10,8 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public abstract class MaVille {
-
-    private static final String API_URL = "http://localhost:7000/api/login";
+    private static final int port = 8000;
+    private static final String API_URL = "http://localhost:" + port + "/api/login";
 
     public static void seConnecter(String email, String password, Context ctx) {
         try {

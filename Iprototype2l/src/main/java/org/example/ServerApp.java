@@ -15,10 +15,10 @@ import com.google.gson.JsonObject;
 import io.javalin.http.Context;
 
 public class ServerApp {
-    private static final String FILE_PATH = "Iprototype2l/src/main/resources/requeteTravaux.json";
+    private static final String FILE_PATH = "database/requeteTravaux.json";
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    static Javalin app = Javalin.create().start(7000);
+    static Javalin app = Javalin.create().start(8000);
     public static void startServer() {
 
         app.get("/api/login", ctx -> {
@@ -117,9 +117,8 @@ public class ServerApp {
 
 
     private static List<RequeteTravail> lireRequetes() {
-        String filePath = "src/main/resources/requeteTravaux.json";
         List<RequeteTravail> requetes = new ArrayList<>();
-        try (Reader reader = new FileReader(filePath)) {
+        try (Reader reader = new FileReader(FILE_PATH)) {
             Gson gson = new Gson();
             RequeteTravail[] requetesArray = gson.fromJson(reader, RequeteTravail[].class);
             if (requetesArray != null) {
@@ -134,7 +133,7 @@ public class ServerApp {
 
 
     private static List<JsonObject> lireUtilisateurs(String role) {
-        String filePath = "Iprototype2l/src/main/resources/utilisateurs.json";
+        String filePath = "database/utilisateurs.json";
         List<JsonObject> utilisateurs = new ArrayList<>();
         try (Reader reader = new FileReader(filePath)) {
             JsonObject fichierJson = JsonParser.parseReader(reader).getAsJsonObject();
@@ -219,11 +218,4 @@ public class ServerApp {
             System.out.println("Serveur arrêté proprement.");
         }
     }
-
-
-
-
-
-
-
 }

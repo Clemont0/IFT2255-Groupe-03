@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
 public class MaVilleIntervenant {
+    private static final int port = 8000;
     static void afficherMenuIntervenant() {
         Scanner scanner = new Scanner(System.in);
 
@@ -65,7 +66,7 @@ public class MaVilleIntervenant {
     }
 
     public static List<RequeteTravail> obtenirRequetes() {
-        String url = "http://localhost:7000/api/requetes";
+        String url = "http://localhost:" + port + "/api/requetes";
         List<RequeteTravail> requetes = new ArrayList<>();
 
         try {
