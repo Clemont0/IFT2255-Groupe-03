@@ -602,6 +602,13 @@
             margin-top: calc(-25%);
             left: calc(-62%);
         }
+        #archdc {
+            transform: scale(0.8);
+            position: relative;
+            margin-top: calc(-20%);
+            margin-left: calc(-11%);
+            margin-bottom: calc(-15%);
+        }
     </style>
 </head>
 
@@ -609,12 +616,14 @@
     <header class="report-header">
         <div class="title-section">
             <div>
-                <h1 class="report-title">Rapport du livrable 1</h1>
+                <h1 class="report-title">Rapport du livrable 2</h1>
                 <p class="report-summary">
                     Ce livrable se concentre sur l'analyse des exigences d'une proposition offerte par un client. Il représente donc
                     un moyen de se familiariser avec les différents outils et procédés utilisés pour éclaircir les demandes et attentes
                     d'un client. Cette analyse sert principalement à offrir un produit final de meilleure qualité et répondant le plus
-                    possible aux exigences exprimées.
+                    possible aux exigences exprimées. La présente partie se concentre sur la conception de l'application <em>MaVille</em>
+                    en fournissant une révision du dernier livrable, l'architecture et le choix du design, le diagramme de classes, trois
+                    diagrammes de séquence ainsi que des indications pour utiliser le prototype.
                 </p>
             </div>
 
@@ -682,6 +691,15 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <h3 class="nav-item-title"><a class="nav-item-title__link" href="#conception">Conception</a></h3>
+                        <ul class="bare-list nav-item-details">
+                            <li class="dash">Architecture</li>
+                            <li class="dash">Diagramme de classes</li>
+                            <li class="dash">Diagrammes de séquence</li>
+                            <li class="dash">Choix du design</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
                         <h3 class="nav-item-title"><a class="nav-item-title__link" href="#analysis">Analyse</a></h3>
                         <ul class="bare-list nav-item-details">
                             <li class="dash">Risques</li>
@@ -689,15 +707,6 @@
                             <li class="dash">Besoins matériels</li>
                             <li class="dash">Stockage</li>
                             <li class="dash">Intégration</li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <h3 class="nav-item-title"><a class="nav-item-title__link" href="#conception">Conception</a></h3>
-                        <ul class="bare-list nav-item-details">
-                            <li class="dash">Architecture</li>
-                            <li class="dash">Diagramme de classes</li>
-                            <li class="dash">Diagrammes de séquence</li>
-                            <li class="dash">Choix du design</li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -724,7 +733,7 @@
                 <p>
                     La colonne 'Contributeurs' contient les intiales de ceux ayant participer aux tâches contenues dans chacune des rangées.
                     <div class="imgbox">
-                        <img class="center-fit" src="diagrammes/échéancier.png" alt="Échéancier">
+                        <img class="center-fit" src="diagrammes/échéancier.png" alt="Échéancier">
                     </div>
                 </p>
             </section>
@@ -1830,13 +1839,13 @@
 
             <section class="main-section">
                 <h2 id="conception" class="section-title">Conception</h2>
-                <div class="activity">
-                    <h4>Architecture</h4>
+                <h3 class="subsection-title">Architecture</h4>
+                <div id="archdc" class="activity">
                     <img class="activity-diagram" src="diagrammes/ModelArchitecture.svg" alt="architecture">
                 </div>
 
+                <h3 class="subsection-title">Diagramme de classes</h4>
                 <div id="classdc" class="activity">
-                    <h4>Diagramme de classes</h4>
                     <img id="classd" class="activity-diagram" src="diagrammes/class.svg" alt="diagrammeDeClasses">
                 </div>
 
@@ -1856,9 +1865,9 @@
                     <img class="activity-diagram" src="diagrammes/listeRequeteTravail.svg" alt="listeRequeteTravail">
                 </div>
 
-                <h3 class="subsection-title">Choix du design</h3>
+                <h3 class="section-title">Choix du design</h3>
                 <div>
-                    <h2>1. Modèle Client-Serveur</h2>
+                    <h4 class="subsection-title">1. Modèle Client-Serveur</h2>
                     <p><strong>Justification :</strong> Le choix du modèle client-serveur permet une séparation claire entre la logique métier (serveur) et l'interface utilisateur (client).
                         Cela facilite la maintenance et rend le serveur réutilisable pour d'autres clients, comme une application mobile.</p>
                     <ul>
@@ -1866,7 +1875,7 @@
                         <li><strong>Centralisation :</strong> Les données sont gérées en un seul endroit pour une meilleure sécurité.</li>
                         <li><strong>Extensibilité :</strong> Possibilité d'intégrer d'autres services ou clients sans changement majeure.</li>
                     </ul>
-                    <h2>2. Modularité et Abstraction</h2>
+                    <h4 class="subsection-title">2. Modularité et Abstraction</h2>
                     <p><strong>Architecture modulaire :</strong> Le projet est divisé en plusieurs classes avec des responsabilités claires :</p>
                     <ul>
                         <li><strong>`ServerApp` :</strong> Gestion du serveur et des endpoints API.</li>
@@ -1874,7 +1883,7 @@
                         <li><strong>`MaVille` :</strong> Gestion des connexions et validations d'utilisateurs.</li>
                         <li><strong>`MaVilleResident` et `MaVilleIntervenant` :</strong> Menus spécifiques pour chaque type d'utilisateur.</li>
                     </ul>
-                    <h2>3. Stockage des Données</h2>
+                    <h4 class="subsection-title">3. Stockage des Données</h2>
                     <p><strong>Choix :</strong> Utilisation d'un fichier JSON local pour le stockage des données.</p>
                     <p><strong>Justification :</strong> Une solution légère et adaptée à un projet de petite taille avec des données locales.</p>
                     <h3>Avantages :</h3>
@@ -1883,7 +1892,7 @@
                         <li><strong>Rapidité d'implémentation :</strong> Le JSON est facilement manipulable.</li>
                         <li><strong>Localité :</strong> Convient à une application destinée à fonctionner sur une seule machine.</li>
                     </ul>
-                    <h2>4. Utilisation d'une API REST</h2>
+                    <h4 class="subsection-title">4. Utilisation d'une API REST</h2>
                     <p><strong>Justification :</strong> L'API REST structure les interactions via des requêtes HTTP standard (GET, POST, etc.),
                         facilitant l'intégration avec des services tiers et d'autres applications.</p>
                     <h3>Avantages :</h3>
@@ -2035,10 +2044,10 @@
                     <br>
                     2. Ouvrez l'invite de commande ou le terminal.
                     <br>
-                    3. Changez de répertoire vers l'emplacement où se trouve le dossier <strong>prototype_jar</strong>. Utilisez la commande <strong>cd</strong> pour vous déplacer dans le bon répertoire :
+                    3. Changez de répertoire vers l'emplacement où se trouve le dossier <strong>prototype</strong>. Utilisez la commande <strong>cd</strong> pour vous déplacer dans le bon répertoire :
                     <ul>
-                    <li>Pour <strong>Windows</strong> : <code>cd C:\chemin\vers\le\répertoire\où\se\trouve\prototype_jar</code></li>
-                    <li>Pour <strong>Linux/macOS</strong> : <code>cd /chemin/vers/le/répertoire/où/se/trouve/prototype_jar</code></li>
+                    <li>Pour <strong>Windows</strong> : <code>cd C:\chemin\vers\le\répertoire\où\se\trouve\prototype</code></li>
+                    <li>Pour <strong>Linux/macOS</strong> : <code>cd /chemin/vers/le/répertoire/où/se/trouve/prototype</code></li>
                     </ul>
                     <p>
                         
@@ -2048,35 +2057,40 @@
                         Assurez-vous de vous trouver dans le bon répertoire où vous avez téléchargé le fichier <strong>prototype.jar</strong> avant de lancer la commande.
                         <br><br>
                         Une fois le programme lancé, vous pouvez vous inscrire et utiliser les informations fournies pour vous connecter.
-                            <h1>Liste des Utilisateurs</h1>
-                                <h2>Résidents</h2>
-                                    <ul>
-                                        <li>Nom : Rick Sanchez Tremblay, Courriel : RickSanchezT@mail.ca, Mot de passe : 123456</li>
-                                        <li>Nom : Antoinette Michelle, Courriel : AntoinetteMichelle@mail.ca, Mot de passe : Cat1995</li>
-                                        <li>Nom : Dipper Poulin, Courriel : DipperPoulin@mail.ca, Mot de passe : motDePasse1</li>
-                                    </ul>
+                            <h1 class="section-title">Liste des Utilisateurs</h1>
+                                <h2 class="subsection-title">Résidents</h2>
+                                <ul>
+                                    <li>Nom : Rick Sanchez Tremblay, Courriel : RickSanchezT@mail.ca, Mot de passe : 123456</li>
+                                    <li>Nom : Antoinette Michelle, Courriel : AntoinetteMichelle@mail.ca, Mot de passe : Cat1995</li>
+                                    <li>Nom : Dipper Poulin, Courriel : DipperPoulin@mail.ca, Mot de passe : motDePasse1</li>
+                                </ul>
 
-                                <h2>Intervenants</h2>
-                                    <ul>
-                                        <li>Nom : Jean Dupont, Courriel : JeanDupont@intervenant.com, Mot de passe : intmotDePasse1</li>
-                                        <li>Nom : Marie Curie, Courriel : MarieCurie@intervenant.com, Mot de passe : intmotDePasse2</li>
-                                        <li>Nom : Melon Musk, Courriel : MelonMusk@intervenant.com, Mot de passe : intmotDePasse3</li>
-                                    </ul>
-                        <br><br>
+                                <h2 class="subsection-title">Intervenants</h2>
+                                <ul>
+                                    <li>Nom : Jean Dupont, Courriel : JeanDupont@intervenant.com, Mot de passe : intmotDePasse1</li>
+                                    <li>Nom : Marie Curie, Courriel : MarieCurie@intervenant.com, Mot de passe : intmotDePasse2</li>
+                                    <li>Nom : Melon Musk, Courriel : MelonMusk@intervenant.com, Mot de passe : intmotDePasse3</li>
+                                </ul>
+                    </p>
+                    <p>
+                        
                         Lorsque vous serez authentifié, vous pourrez naviguer dans le menu en entrant le chiffre correspondant à chaque choix.
                         <br><br>
-                        Les fonctionnalitées exigé sont implementer pour le résident et l'intervenant.
+                        Les fonctionnalités exigées sont implementées pour le résident et l'intervenant et les fichiers de tests y sont aussi;
+                         ils se trouvent à l'onglet "Iprototype2l/src/test/java/" dans le répertoire GitHub.
                         <br><br>
                         NB : <strong>Le code se retrouve dans le répertoire GitHub si vous voulez le consulter ou exécuter le prototype depuis le code.
-                             Cela pourrait être le cas pour l'execution du serveur si vous avez des problèmes de PORTS</strong>
+                             Cela pourrait être le cas pour l'exécution du serveur si vous avez des problèmes de ports. Le serveur est sur
+                            le port 8000 par défaut, mais il se pourrait qu'il ne soit pas disponible sur votre ordinateur. Il faudra donc le libérer
+                        ou le changer.</strong>
                     </p>    
-                    </p>
+                </p>
             </section>
         </div>
     </main>
     <footer class="report-footer">
         <p>
-            Devoir 1 &ndash; Analyse des exigences<br>
+            Devoir 2 &ndash; Analyse des exigences<br>
             IFT2255 (Génie logiciel) <br>
             Automne 2024
         </p>
