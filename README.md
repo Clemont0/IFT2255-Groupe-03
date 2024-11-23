@@ -17,8 +17,11 @@ L'organisation du répertoire se présente comme suit
   lancer le programme à partir du fichier `Main.java`
 - ~~**Proto_2**
 Ce dossier contient le code pour une autre version du premier prototype, mais ce n'est pas celui à utiliser.~~
+- **Iprototype2l**  
+  Ce dossier contient le code pour le deuxième prototype (le plus actuel) de l'application _MaVille_ en ligne de commandes seulement. Pour l'exécuter, simplement télécharger le dossier et
+  lancer le programme à partir du fichier `Main.java`.
 - **prototype_jar**  
-  Ce dossier contient le code pour le deuxième prototype de l'application _MaVille_ en ligne de commandes avec l'architecture et les spécification demandées pour le devoir 2. Pour l'éxecuter, simplement télécharger le dossier et lancer le prototype.jar ne déplacer pas les fichiers JSON locale dans le dossier..  
+  Ce dossier contient le fichier .jar ainsi que les bases de données pour le deuxième prototype de l'application _MaVille_ en ligne de commandes avec l'architecture et les spécifications demandées pour le devoir 2. Pour l'éxecuter, simplement télécharger le dossier et lancer le prototype.jar ne déplacer pas les fichiers JSON locale dans le dossier.  
 - **prototype.jar**  
   Ce fichier `prototype.jar` (Java ARchive) est un fichier exécutable Java qui contient le premier prototype de l'application _MaVille_. Pour l'exécuter, suivez les étapes ci-dessous :
 ### Étapes pour exécuter le fichier `.jar` :
