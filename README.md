@@ -14,13 +14,9 @@ L'organisation du répertoire se présente comme suit
   Ce dossier contient toutes les images du rapport, c'est-à-dire le diagramme de cas d'utilisation, les diagrammes d'activités ainsi que l'échéancier.
 - **prototype**  
   Ce dossier contient le code pour le premier prototype de l'application _MaVille_ en ligne de commandes seulement. Pour l'exécuter, simplement télécharger le dossier et
-  lancer le programme à partir du fichier `Main.java`.
-  
-~~  
-- **Proto_2**  
-  Ce dossier contient le code pour une autre version du premier prototype, mais ce n'est pas celui à utiliser.
-~~     
-
+  lancer le programme à partir du fichier `Main.java`
+- ~~**Proto_2**
+Ce dossier contient le code pour une autre version du premier prototype, mais ce n'est pas celui à utiliser.~~
 - **prototype_jar**  
   Ce dossier contient le code pour le deuxième prototype de l'application _MaVille_ en ligne de commandes avec l'architecture et les spécification demandées pour le devoir 2. Pour l'éxecuter, simplement télécharger le dossier et lancer le prototype.jar ne déplacer pas les fichiers JSON locale dans le dossier..  
 - **prototype.jar**  
