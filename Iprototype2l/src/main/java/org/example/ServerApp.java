@@ -15,9 +15,13 @@ import com.google.gson.JsonObject;
 import io.javalin.http.Context;
 
 public class ServerApp {
-    private static final String FILE_PATH = "database/requeteTravaux.json";
+    // si vous devez changer le port, utiliser plutôt le path: "src/main/resources/"
+    // pour exécuter, car le path actuel est pour le fichier .jar
+    // lancer ensuite Main.java
+    private static final String path = "database/";
+    private static final String FILE_PATH = path + "requeteTravaux.json";
     private static final ObjectMapper mapper = new ObjectMapper();
-
+                                            // port 8000
     static Javalin app = Javalin.create().start(8000);
     public static void startServer() {
 
@@ -133,7 +137,7 @@ public class ServerApp {
 
 
     private static List<JsonObject> lireUtilisateurs(String role) {
-        String filePath = "database/utilisateurs.json";
+        String filePath = path + "utilisateurs.json";
         List<JsonObject> utilisateurs = new ArrayList<>();
         try (Reader reader = new FileReader(filePath)) {
             JsonObject fichierJson = JsonParser.parseReader(reader).getAsJsonObject();
