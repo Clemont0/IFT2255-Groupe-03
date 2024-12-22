@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
 
 public abstract class MaVille {
     private static final int port = 8000;
+
+    private static String emailUtilisateurConnecte = null;
+
     private static final String API_URL = "http://localhost:" + port + "/api/login";
 
     public static void seConnecter(String email, String password, Context ctx) {
@@ -20,13 +23,15 @@ public abstract class MaVille {
             String reponseJson = fetchApi(API_URL);
 
             if (reponseJson == null || reponseJson.isEmpty()) {
-                reponseErreur(ctx, 500, "Erreur : Aucun utilisateur trouvé ou API inaccessible.");
+                reponseErreur(ctx, 500, "Erreur : Aucun utilisateur trouvé.");
                 return;
             }
 
             JsonObject fichierJson = JsonParser.parseString(reponseJson).getAsJsonObject();
 
             if (validerUtilisateurs(fichierJson.getAsJsonArray("residents"), email, password, ctx, "Résident")) {
+
+                new Resident("x",email,"x","x","x");
                 MaVilleResident.afficherMenuResident(email);
                 return;
             }
@@ -112,4 +117,5 @@ public abstract class MaVille {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.matches();
     }
+
 }

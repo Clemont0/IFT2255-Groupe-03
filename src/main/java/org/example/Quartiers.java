@@ -18,23 +18,23 @@ public class Quartiers {
         ArrayList<String> qs = new ArrayList<>();
         qs.add("Ahuntsic-Cartierville");
         qs.add("Anjou");
-        qs.add("Côte-des-Neiges–Notre-Dame-de-Grâce");
+        qs.add("Côte-des-Neiges-Notre-Dame-de-Grâce");
         qs.add("Lachine");
         qs.add("Lasalle");
         qs.add("Le Plateau-Mont-Royal");
         qs.add("Le Sud-Ouest");
-        qs.add("L’Île-Bizard–Sainte-Geneviève");
-        qs.add("Mercier–Hochelaga-Maisonneuve");
+        qs.add("L'Île-Bizard-Sainte-Geneviève");
+        qs.add("Mercier-Hochelaga-Maisonneuve");
         qs.add("Montréal-Nord");
         qs.add("Outremont");
         qs.add("Pierrefonds-Roxboro");
-        qs.add("Rivière-des-Prairies–Pointe-aux-Trembles");
-        qs.add("Rosemont–La Petite-Patrie");
+        qs.add("Rivière-des-Prairies-Pointe-aux-Trembles");
+        qs.add("Rosemont-La Petite-Patrie");
         qs.add("Saint-Laurent");
         qs.add("Saint-Léonard");
         qs.add("Verdun");
         qs.add("Ville-Marie");
-        qs.add("Villeray–Saint-Michel–Parc-Extension");
+        qs.add("Villeray-Saint-Michel-Parc-Extension");
         return qs;
     }
 

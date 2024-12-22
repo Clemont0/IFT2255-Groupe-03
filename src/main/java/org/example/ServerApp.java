@@ -12,6 +12,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -50,8 +52,8 @@ public class ServerApp {
             }
         });
         app.post("/ajouter-requete", ctx -> {
-            Map<String, String> nouvelleRequete = mapper.readValue(ctx.body(), new TypeReference<>() {});
-            List<Map<String, String>> requetes = chargerRequetes();
+            Map<String, Object> nouvelleRequete = mapper.readValue(ctx.body(), new TypeReference<>() {});
+            List<Map<String, Object>> requetes = chargerRequetes();
             requetes.add(nouvelleRequete);
             sauvegarderRequetes(requetes);
             ctx.status(201).result("Requête ajoutée avec succès !");
@@ -62,6 +64,13 @@ public class ServerApp {
             projets.add(nouveauProjet);
             sauvegarderProjets(projets);
             ctx.status(201).result("Projet ajouté avec succès !");
+        });
+        app.post("/ajouter-candidature", ctx -> {
+            Map<String, Object> nouvelleCandidature = mapper.readValue(ctx.body(), new TypeReference<>() {});
+            List<Map<String, Object>> candidatures = chargerCandidatures();
+            candidatures.add(nouvelleCandidature);
+            sauvegarderCandidatures(candidatures);
+            ctx.status(201).result("Candidature soumise !");
         });
         app.post("/ajouter-resident", ctx -> {
             Map<String, List<Map<String, Object>>> users = getUsers();
@@ -81,6 +90,36 @@ public class ServerApp {
             sauvegarderUsers(users);
             ctx.status(201).result("Nouvel intervenant ajouté avec succès !");
         });
+        app.post("/suppimer-candidature", ctx ->{
+            int index = Integer.parseInt(ctx.body());
+            List<Map<String, Object>> candidatures = chargerCandidatures();
+            candidatures.remove(index);
+            sauvegarderCandidatures(candidatures);
+            ctx.status(201).result("Candidature supprimée !");
+        });
+        app.post("/valider-candidature", ctx ->{
+            int index = Integer.parseInt(ctx.body())-1;
+            List<Map<String, Object>> candidatures = chargerCandidatures();
+            candidatures.get(index).replace("etat","En attente d'une réponse.","Approuvée.");
+            sauvegarderCandidatures(candidatures);
+            ctx.status(201).result("Candidature validée !");
+        });
+        app.post("/rejetter-candidature", ctx ->{
+            int index = Integer.parseInt(ctx.body())-1;
+            List<Map<String, Object>> candidatures = chargerCandidatures();
+            candidatures.get(index).replace("etat","En attente d'une réponse.","Rejetée.");
+            sauvegarderCandidatures(candidatures);
+            ctx.status(201).result("Candidature rejetté !");
+        });
+        app.post("/message-candidature", ctx ->{
+            Map<String, Object> element = mapper.readValue(ctx.body(), new TypeReference<>() {});
+            int index = (int) element.get("idx")-1;
+            String msg = element.get("msg").toString();
+            List<Map<String, Object>> candidatures = chargerCandidatures();
+            candidatures.get(index).replace("message","",msg);
+            sauvegarderCandidatures(candidatures);
+            ctx.status(201).result("Candidature rejetté !");
+        });
         app.post("/envoyer-notification", ctx -> {
             Map<String, List<Map<String, Object>>> users = getUsers();
             Map<String, Object> notif = mapper.readValue(ctx.body(), new TypeReference<>() {});
@@ -90,10 +129,9 @@ public class ServerApp {
             for (Map<String, Object> p : projets) {
                 if (p.get("id").equals(id)) {projet = p;}
             }
+            List<Map<String, Object>> residents = users.get("residents");
             String qs = projet.get("quartiers").toString();
             List<String> quartiers = Arrays.asList(qs.substring(1, qs.length() - 1).split("\\s*,\\s*"));
-
-            List<Map<String, Object>> residents = users.get("residents");
             for (Map<String, Object> r : residents) {
                 String rq = r.get("quartier").toString();
                 if (quartiers.contains(rq)) {
@@ -107,43 +145,46 @@ public class ServerApp {
             sauvegarderUsers(users);
             ctx.status(201).result("Notification envoyée avec succès !");
         });
+        app.post("/ajouter-plage", ctx -> {
+            Map<String, String> plage = mapper.readValue(ctx.body(), Map.class);
+            Map<String, List<Map<String, Object>>> users = getUsers();
+            String email = Resident.getCourriel();
+            if (email == null || email.isEmpty()) {
+                ctx.status(404).result("Aucun résident connecté.");
+                return;
+            }
+            Map<String, Object> resident = null;
+            for (Map<String, Object> r : users.get("residents")) {
+                if (r.get("courriel").equals(email)) {
+                    resident = r;
+                    break;
+                }
+            }
+            if (resident == null) {
+                ctx.status(404).result("Résident non trouvé.");
+                return;
+            }
+            List<Map<String, String>> plages = (List<Map<String, String>>) resident.get("plages");
+            if (plages == null) {
+                plages = new ArrayList<>();
+                resident.put("plages", plages);
+            }
+            plages.add(plage);
+            sauvegarderUsers(users);
+            ctx.status(201).result("Plage horaire ajoutée avec succès!");
+        });
+
+        app.get("/api-projets", ctx -> {
+            List<Projet> projets = lireProjets();
+            if (projets.isEmpty()) {
+                ctx.status(404).json("Aucun fichier trouvé");
+            } else {
+                List<Projet> projetsFiltrés = filterProjetsDansLesTroisMois(projets);
+                ctx.status(200).json(projetsFiltrés);
+            }
+        });
         app.get("/travaux", ServerApp::getTravaux);
         app.get("/entraves", ServerApp::getEntraves);
-    }
-
-    public static String toHex(String arg) {
-        return String.format("%040x", new BigInteger(1, arg.getBytes(StandardCharsets.UTF_16)));
-    }
-
-    static String parseStringAsJSON(String raw) {
-        String[] objects = raw.substring(1, raw.length() - 1).trim().split("\\s*}\\s*,\\s*\\{\\s*");
-        String json = "";
-        int n = objects.length;
-        for (int i = 0; i < n; i++) {
-            String to = objects[i];
-            String o;
-            // string is an empty array
-            if (raw.length() == 2) {
-                return raw;
-            } else if (n == 1) {
-                o = to.substring(1, to.length() - 1);
-            } else if (i == 0) {
-                o = to.substring(1);
-            } else if (i == n - 1) {
-                o = to.substring(0, to.length() - 1);
-            } else {
-                o = to;
-            }
-            String obj = "{";
-            String[] items = o.trim().split("\\s*,\\s*");
-            for (String it : items) {
-                String[] elems = it.trim().split("\\s*=\\s*");
-                String projet = elems[0].equals("projetId") ? elems[1] : "\"" + elems[1] + "\"";
-                obj = obj + "\"" + elems[0] + "\":" + projet + ",";
-            }
-            json = json + (obj.substring(0, obj.length() - 1) + "},");
-        }
-        return "[" + json.substring(0, json.length() - 1) + "]";
     }
 
     public static void envoyerNotification(String json) {
@@ -241,7 +282,8 @@ public class ServerApp {
                     record.path("currentstatus").asText(),
                     record.path("reason_category").asText(),
                     record.path("submittercategory").asText(),
-                    record.path("organizationname").asText()
+                    record.path("organizationname").asText(),
+                    record.path("duration_start_date").asText()
             );
             travaux.add(travail);
         }
@@ -310,7 +352,7 @@ public class ServerApp {
         return list;
     }
 
-    public static List<Map<String, String>> chargerRequetes() throws IOException {
+    public static List<Map<String, Object>> chargerRequetes() throws IOException {
         return mapper.readValue(new File(FILE_PATH), new TypeReference<>() {});
     }
 
@@ -318,7 +360,11 @@ public class ServerApp {
         return mapper.readValue(new File(path + "projets.json"), new TypeReference<>() {});
     }
 
-    private static void sauvegarderRequetes(List<Map<String, String>> requetes) throws IOException {
+    public static List<Map<String, Object>> chargerCandidatures() throws IOException {
+        return mapper.readValue(new File(path + "candidatures.json"), new TypeReference<>() {});
+    }
+
+    private static void sauvegarderRequetes(List<Map<String, Object>> requetes) throws IOException {
         mapper.writeValue(new File(FILE_PATH), requetes);
     }
 
@@ -328,6 +374,10 @@ public class ServerApp {
 
     public static void sauvegarderUsers(Map<String, List<Map<String, Object>>> users) throws IOException {
         mapper.writeValue(new File(path + "utilisateurs.json"), users);
+    }
+
+    public static void sauvegarderCandidatures(List<Map<String,Object>> candidature) throws IOException {
+        mapper.writeValue(new File(path + "candidatures.json"), candidature);
     }
 
 
@@ -385,10 +435,74 @@ public class ServerApp {
         return flag;
     }
 
+    static String parseStringAsJSON(String raw) {
+        String[] objects = raw.substring(1, raw.length() - 1).trim().split("\\s*}\\s*,\\s*\\{\\s*");
+        String json = "";
+        int n = objects.length;
+        for (int i = 0; i < n; i++) {
+            String to = objects[i];
+            String o;
+            // string is an empty array
+            if (raw.length() == 2) {
+                return raw;
+            } else if (n == 1) {
+                o = to.substring(1, to.length() - 1);
+            } else if (i == 0) {
+                o = to.substring(1);
+            } else if (i == n - 1) {
+                o = to.substring(0, to.length() - 1);
+            } else {
+                o = to;
+            }
+            String obj = "{";
+            String[] items = o.trim().split("\\s*,\\s*");
+            for (String it : items) {
+                String[] elems = it.trim().split("\\s*=\\s*");
+                String projet = elems[0].equals("projetId") ? elems[1] : "\"" + elems[1] + "\"";
+                obj = obj + "\"" + elems[0] + "\":" + projet + ",";
+            }
+            json = json + (obj.substring(0, obj.length() - 1) + "},");
+        }
+        return "[" + json.substring(0, json.length() - 1) + "]";
+    }
+
     public static void stopServer() {
         if (app != null) {
             app.stop();
             System.out.println("Serveur arrêté proprement.");
         }
     }
+
+    private static List<Projet> lireProjets() {
+        List<Projet> projets = new ArrayList<>();
+        try (Reader reader = new FileReader(path + "projets.json")) {
+            Gson gson = new Gson();
+            Projet[] projetsArray = gson.fromJson(reader, Projet[].class);
+            if (projetsArray != null) {
+                projets.addAll(Arrays.asList(projetsArray));
+                System.out.println(projets);
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la lecture du fichier JSON : " + e.getMessage());
+        }
+        return projets;
+    }
+    public static List<Projet> filterProjetsDansLesTroisMois(List<Projet> projets) {
+        List<Projet> projetsFiltrés = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        LocalDate troisMoisPlusTard = today.plusMonths(3);
+        for (Projet projet : projets) {
+            String dateFinStr = projet.getDateFin();
+            LocalDate dateFin = LocalDate.parse(dateFinStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            if (!dateFin.isBefore(today) && !dateFin.isAfter(troisMoisPlusTard)) {
+                projetsFiltrés.add(projet);
+            }
+        }
+
+        return projetsFiltrés;
+    }
 }
+
+
+

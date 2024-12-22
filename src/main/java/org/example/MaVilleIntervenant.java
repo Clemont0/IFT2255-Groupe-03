@@ -7,12 +7,14 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
+import static org.example.ServerApp.getUsers;
 import static org.example.ServerApp.isLaterDate;
 
 public class MaVilleIntervenant {
@@ -24,21 +26,29 @@ public class MaVilleIntervenant {
         while (true) {
             System.out.println("\nMenu intervenant :");
             System.out.println("1. Consulter les requêtes de travail");
-            System.out.println("2. Soumettre un nouveau projet");
-            System.out.println("3. Mettre à jour les informations d'un projet");
-            System.out.println("4. Quitter");
+            System.out.println("2. Soumettre une candidature.");
+            System.out.println("3. Retirer une candidature.");
+            System.out.println("4. Voir les candidatures soumises.");
+            System.out.println("5. Soumettre un nouveau projet");
+            System.out.println("6. Mettre à jour les informations d'un projet");
+            System.out.println("7. Quitter");
             System.out.print("Veuillez choisir une option : ");
             try {
                 int choix = Integer.parseInt(scanner.nextLine());
 
                 if (choix == 1) {
                     voirRequetes();
-                }
-                if (choix == 2) {
+                }if (choix == 2){
+                    soumettreCandidature();
+                }if (choix == 3){
+                    retirerCandidature();
+                }if(choix == 4){
+                    afficherCandidatures();
+                }if (choix == 5) {
                     soumettreProjet();
-                } if (choix == 3) {
+                } if (choix == 6) {
                     modifierProjet();
-                }else if (choix == 4) {
+                }else if (choix == 7) {
                     System.out.println("Au revoir!");
                     break;
                 } else {
@@ -49,6 +59,7 @@ public class MaVilleIntervenant {
             }
         }
     }
+
     public static void voirRequetes() {
         List<RequeteTravail> requetes = obtenirRequetes();
         if (requetes.isEmpty()) {
@@ -95,10 +106,148 @@ public class MaVilleIntervenant {
         return requetes;
     }
 
-    public static synchronized String createID() throws IOException {
-        return String.valueOf(ServerApp.chargerProjets().size() + 1);
+    public static void soumettreCandidature() throws IOException, ParseException {
+        boolean found1 = false,found2  = false;
+        Map<String, List<Map<String, Object>>> users = getUsers();
+        String nom = "",idIntervenant,idRequete,etat = "En attente d'une réponse.",message="";
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuiller saisir votre ID personnel:");
+        idIntervenant = scanner.nextLine();
+        System.out.println(idIntervenant);
+
+        for(Map <String,Object> user : users.get("intervenants")){
+            String val1 = user.get("id").toString();
+            if(val1.equalsIgnoreCase(idIntervenant)){
+                nom = user.get("nom").toString();
+                found1 = true;
+                break;
+            }
+        }if(!found1){
+            System.out.println("Id introuvable. Veuiller verifier si l'id entré est valide.");
+            return;
+        }
+
+        voirRequetes();
+
+        System.out.println("Veuiller saisir l'id de la requête pour laquelle vous voulez postuler parmi les requêtes montrées précédemment.");
+        idRequete = scanner.nextLine();
+
+        for(RequeteTravail requeteTravail : obtenirRequetes()){
+            if(requeteTravail.getId().equalsIgnoreCase(idRequete)){
+                found2 = true ;
+                System.out.println("requête trouvée.");
+                break;
+            }
+        }if(!found2){
+            System.out.println("Requête introuvable. Veuiller verifier si l'id entré est valide.");
+            return;
+        }
+
+        System.out.print("Entrez la date de début (yyyy-mm-dd) : ");
+        String debut = scanner.nextLine();
+
+        System.out.print("Entrez la date de fin (yyyy-mm-dd) : ");
+        String fin = scanner.nextLine();
+
+        if (!isLaterDate(debut, fin)) {return;}
+
+        int idx = Id.nextCandidateId();
+
+        String jsonCandidature = String.format(
+                "{\"Id_Candidature\":%d, \"Nom de l'intervenant\":\"%s\", \"Date de Soumission\":\"%s\",\"Date de Debut\":\"%s\", \"Date de Fin\":\"%s\", \"Id_Requete\":\"%s\", \"Id_Intervenant\":\"%s\", \"etat\":\"%s\", \"message\":\"%s\"}",
+                idx,nom, LocalDate.now(),debut,fin,idRequete,idIntervenant,etat,message
+        );
+
+        try {
+            URL url = new URL("http://localhost:" + port + "/ajouter-candidature");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            try (OutputStream os = connection.getOutputStream()) {
+                os.write(jsonCandidature.getBytes());
+                os.flush();
+            }
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 201) {
+                System.out.println("Candidature ajouté avec succès !");
+            } else {
+                System.out.println("Erreur lors de l'ajout de la candidature. Code : " + responseCode);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    public static void retirerCandidature() throws IOException {
+        afficherCandidatures();
+        boolean found = false;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuiller saisir le numero correspondant à la candidature à supprimer : ");
+        String id  = scanner.nextLine();
+
+        for(Map<String,Object> candidature : ServerApp.chargerCandidatures()){
+            if (Integer.parseInt(id)-1 == ServerApp.chargerCandidatures().indexOf(candidature)){
+                String position = String.valueOf(Integer.parseInt(id)-1);
+                found = true;
+                try {
+                    URL url = new URL("http://localhost:" + port + "/suppimer-candidature");
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("Content-Type", "application/json");
+                    connection.setDoOutput(true);
+
+                    try (OutputStream os = connection.getOutputStream()) {
+                        os.write(position.getBytes());
+                        os.flush();
+                    }
+
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == 201) {
+                        System.out.println("Candidature supprimée");
+                        break;
+                    }else {
+                        System.out.println("Erreur lors de la suppression de la candidature. Code : " + responseCode);
+                        System.out.println(id);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if(!found){
+            System.out.println("Il n'existe aucune candidature associée à cet ID.");
+        }
+    }
+
+    public static void afficherCandidatures() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuiller entrer votre ID personnels");
+        String id = scanner.nextLine();
+        int count = 1;
+
+        if(ServerApp.chargerCandidatures().isEmpty()) {
+            System.out.println("Aucune candidature n'a été soumise dans le système.");
+        }
+
+        System.out.println("\n--- Liste des candidatures ---");
+        for(Map<String, Object> candidature : ServerApp.chargerCandidatures()) {
+            if(candidature.get("Id_Intervenant").equals(id)){
+                System.out.println(count +".");
+                for (String key : candidature.keySet()) {
+                    System.out.println(key + ": " + candidature.get(key).toString());
+                }
+                count++;
+            }
+        }
+    }
 
     public static void soumettreProjet() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
@@ -121,15 +270,15 @@ public class MaVilleIntervenant {
 
         System.out.println(
                 "1. Travaux routiers\n" +
-                "2. Travaux de gaz ou électricité\n" +
-                "3. Construction ou rénovation\n" +
-                "4. Entretien paysager\n" +
-                "5. Travaux liés aux transports en commun\n" +
-                "6. Travaux de signalisation et éclairage\n" +
-                "7. Travaux souterrains\n" +
-                "8. Travaux résidentiel\n" +
-                "9. Entretien urbain\n" +
-                "10. Entretien des réseaux de télécommunication"
+                        "2. Travaux de gaz ou électricité\n" +
+                        "3. Construction ou rénovation\n" +
+                        "4. Entretien paysager\n" +
+                        "5. Travaux liés aux transports en commun\n" +
+                        "6. Travaux de signalisation et éclairage\n" +
+                        "7. Travaux souterrains\n" +
+                        "8. Travaux résidentiel\n" +
+                        "9. Entretien urbain\n" +
+                        "10. Entretien des réseaux de télécommunication"
         );
         System.out.print("Entrez le type du travail : ");
         String type;
@@ -142,24 +291,24 @@ public class MaVilleIntervenant {
 
         System.out.println(
                 "1. Ahuntsic-Cartierville\n" +
-                "2. Anjou\n" +
-                "3. Côte-des-Neiges–Notre-Dame-de-Grâce\n" +
-                "4. Lachine\n" +
-                "5. Lasalle\n" +
-                "6. Le Plateau-Mont-Royal\n" +
-                "7. Le Sud-Ouest\n" +
-                "8. L’Île-Bizard–Sainte-Geneviève\n" +
-                "9. Mercier–Hochelaga-Maisonneuve\n" +
-                "10. Montréal-Nord\n" +
-                "11. Outremont\n" +
-                "12. Pierrefonds-Roxboro\n" +
-                "13. Rivière-des-Prairies–Pointe-aux-Trembles\n" +
-                "14. Rosemont–La Petite-Patrie\n" +
-                "15. Saint-Laurent\n" +
-                "16. Saint-Léonard\n" +
-                "17. Verdun\n" +
-                "18. Ville-Marie\n" +
-                "19. Villeray–Saint-Michel–Parc-Extension\n"
+                        "2. Anjou\n" +
+                        "3. Côte-des-Neiges–Notre-Dame-de-Grâce\n" +
+                        "4. Lachine\n" +
+                        "5. Lasalle\n" +
+                        "6. Le Plateau-Mont-Royal\n" +
+                        "7. Le Sud-Ouest\n" +
+                        "8. L’Île-Bizard–Sainte-Geneviève\n" +
+                        "9. Mercier–Hochelaga-Maisonneuve\n" +
+                        "10. Montréal-Nord\n" +
+                        "11. Outremont\n" +
+                        "12. Pierrefonds-Roxboro\n" +
+                        "13. Rivière-des-Prairies–Pointe-aux-Trembles\n" +
+                        "14. Rosemont–La Petite-Patrie\n" +
+                        "15. Saint-Laurent\n" +
+                        "16. Saint-Léonard\n" +
+                        "17. Verdun\n" +
+                        "18. Ville-Marie\n" +
+                        "19. Villeray–Saint-Michel–Parc-Extension\n"
         );
         System.out.print("Sélectionnez les quartiers affectés (1 2 ...) : ");
         String[] quartiers = scanner.nextLine().split(" ");
@@ -183,11 +332,11 @@ public class MaVilleIntervenant {
         System.out.print("Horaire des travaux : ");
         String horaire = scanner.nextLine();
 
-        String id = createID();
+        int id = Id.nextProjetId();
         String jsonRequete = String.format(
-                "{\"id\":%s, \"titre\":\"%s\", \"description\":\"%s\", \"type\":\"%s\",\"quartiers\":" + quartiersJson +
+                "{\"id\":%d, \"titre\":\"%s\", \"description\":\"%s\", \"type\":\"%s\",\"quartiers\":" + quartiersJson +
                         ", \"dateDebut\":\"%s\", \"dateFin\":\"%s\", \"horaire\":\"%s\", \"statut\":\"Prévu\"}",
-                createID(), titre, description, type, dateDebut, dateFin, horaire
+                id, titre, description, type, dateDebut, dateFin, horaire
         );
 
         try {
@@ -206,7 +355,7 @@ public class MaVilleIntervenant {
             if (responseCode == 201) {
                 System.out.println("Projet ajouté avec succès !");
                 String msg = "Nouveau projet: " + titre + "!";
-                String notif = "{\"projetId\": " + Integer.parseInt(id) + ", \"message\":\"" + msg + "\"}";
+                String notif = "{\"projetId\": " + id + ", \"message\":\"" + msg + "\"}";
                 ServerApp.envoyerNotification(notif);
             } else {
                 System.out.println("Erreur lors de l'ajout de du projet. Code : " + responseCode);
@@ -255,8 +404,8 @@ public class MaVilleIntervenant {
 
             System.out.println(
                     "1. Modifier la description\n" +
-                    "2. Modifier la date de fin\n" +
-                    "3. Modifier le statut"
+                            "2. Modifier la date de fin\n" +
+                            "3. Modifier le statut"
             );
             String typeModif;
             System.out.print("Entrez votre choix : ");
@@ -281,9 +430,9 @@ public class MaVilleIntervenant {
             } else {
                 System.out.println(
                         "1. Prévu\n" +
-                        "2. En cours\n" +
-                        "3. Suspendu\n" +
-                        "4. Terminé\n"
+                                "2. En cours\n" +
+                                "3. Suspendu\n" +
+                                "4. Terminé\n"
                 );
                 System.out.print("Choisissez le nouveau statut : ");
                 int opt = Integer.parseInt(scanner.nextLine());
@@ -319,8 +468,8 @@ public class MaVilleIntervenant {
 
             System.out.println(
                     "1. Entreprise publique\n" +
-                    "2. Entrepreneur privé\n" +
-                    "3. Particulier"
+                            "2. Entrepreneur privé\n" +
+                            "3. Particulier"
             );
             System.out.print("Type : ");
             int typeChoix = scanner.nextInt();
@@ -369,4 +518,5 @@ public class MaVilleIntervenant {
             }
         }
     }
+
 }

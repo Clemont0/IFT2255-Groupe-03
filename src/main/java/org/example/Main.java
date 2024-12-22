@@ -30,13 +30,11 @@ public class Main {
             if (scanner.hasNextInt()) {
                 int choix = scanner.nextInt();
                 scanner.nextLine();
-
                 if (choix == 1) {
                     System.out.print("Veuillez entrer votre email : ");
                     String courriel = scanner.nextLine();
                     System.out.print("Veuillez entrer votre mot de passe : ");
                     String mdp = scanner.nextLine();
-
                     System.out.println("Tentative de connexion...");
                     MaVille.seConnecter(courriel, mdp, null);
                 } else if (choix == 2) {
@@ -49,7 +47,6 @@ public class Main {
                     if (opt == 1) {MaVilleResident.inscription();}
                     else if (opt == 2) {MaVilleIntervenant.inscription();}
                     else {System.out.println("Choix invalide");}
-
                 }else if ( choix == 3) {
                     System.out.println("Au revoir");
                     ServerApp.stopServer();
@@ -58,7 +55,6 @@ public class Main {
                     System.out.println("Option invalide. Veuillez réessayer.");
                 }
             } else {
-
                 System.out.println("Option invalide. Veuillez entrer un nombre valide.");
                 scanner.nextLine(); }
         }

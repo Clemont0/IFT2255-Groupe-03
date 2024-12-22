@@ -2,7 +2,7 @@ package org.example;
 
 public class Utilisateur {
     protected String nom;
-    protected String courriel;
+    protected static String courriel;
     protected String motDePasse;
 
     public Utilisateur(String nom, String courriel, String motDePasse) {
@@ -15,7 +15,8 @@ public class Utilisateur {
         return nom;
     }
 
-    public String getCourriel() {
+
+    public static String getCourriel() {
         return courriel;
     }
 

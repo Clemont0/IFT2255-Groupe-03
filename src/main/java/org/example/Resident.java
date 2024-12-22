@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Resident extends Utilisateur {
     private String adresse;
     private String postalCode;
@@ -17,4 +20,7 @@ public class Resident extends Utilisateur {
     public String getPostalCode() {
         return postalCode;
     }
+
+
+
 }

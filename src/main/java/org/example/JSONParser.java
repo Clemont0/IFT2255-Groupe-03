@@ -5,6 +5,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.io.IOException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class JSONParser {
@@ -17,5 +19,6 @@ public class JSONParser {
         List<Entraves> entravesList = objectMapper.readValue(jsonResponse, new TypeReference<List<Entraves>>() {});
         return entravesList;
     }
+
 }
 

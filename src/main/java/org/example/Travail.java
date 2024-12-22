@@ -2,6 +2,8 @@ package org.example;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.Instant;
+
 public class Travail {
 
     @JsonProperty("id") // Correspond à "id" dans le JSON
@@ -22,19 +24,27 @@ public class Travail {
     @JsonProperty("organizationname")
     private String organizationName;
 
+    @JsonProperty("duration_start_date")
+    private String duration_start_date;
+
 
     public Travail() {
 
     }
 
     public Travail(String id, String boroughId, String currentStatus, String reasonCategory,
-                   String submitterCategory, String organizationName) {
+                   String submitterCategory, String organizationName,  String duration_start_date) {
         this.id = id;
         this.boroughId = boroughId;
         this.currentStatus = currentStatus;
         this.reasonCategory = reasonCategory;
         this.submitterCategory = submitterCategory;
         this.organizationName = organizationName;
+        this.duration_start_date = duration_start_date;
+    }
+
+    public String getduration_start_date() {
+        return duration_start_date;
     }
 
     public String getId() {
@@ -84,4 +94,10 @@ public class Travail {
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
     }
+
+    public void setDuration_start_date(String duration_start_date) {
+        this.duration_start_date = duration_start_date;
+    }
+
+
 }
