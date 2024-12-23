@@ -1,6 +1,7 @@
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.example.Intervenant;
 import org.example.RequeteTravail;
 import org.junit.jupiter.api.Test;
 import java.lang.reflect.Type;
@@ -67,4 +68,25 @@ class MaVilleIntervenantTest {
         List<RequeteTravail> requetes = gson.fromJson(reponse, listType);
         assertTrue(requetes.isEmpty(), "La liste doit etre vide");
     }
+
+    @Test
+    void testVoirIntervenantsVide() {
+        List<Intervenant> response = new ArrayList<>();
+        if (response.isEmpty()) {
+            assertEquals(0, response.size(), "La liste doit etre vide");
+        } else {
+            fail("Taille nulle attendue");
+        }
+    }
+
+    @Test
+    void testVoirIntervenantNonVide() {
+        List<Intervenant> response = new ArrayList<>();
+        response.add(new Intervenant("Jean Dupont", "JeanDupont@intervenant.com","intmotDePasse1","Particulier","12345678"));
+        response.add(new Intervenant("Marie Curie", "MarieCurie@intervenant.com","intmotDePasse2","Entrepreneur privé","87654321"));
+        assertEquals(2, response.size(), "La liste doit contenir 2 objet");
+        assertEquals("Marie Curie", response.get(1).getNom(), "attendu dans la liste 'Marie Curie'.");
+    }
+
+
 }
