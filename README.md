@@ -20,6 +20,9 @@ Ce dossier contient le code pour une autre version du premier prototype, mais ce
 - **Iprototype2l**  
   Ce dossier contient le code pour le deuxième prototype (le plus actuel) de l'application _MaVille_ en ligne de commandes seulement. Pour l'exécuter, simplement télécharger le dossier et
   lancer le programme à partir du fichier `Main.java`.
+- **prototype3**  
+  Ce dossier contient le code pour le troisième prototype (le plus actuel) de l'application _MaVille_ en ligne de commandes seulement. Pour l'exécuter, simplement télécharger le dossier et
+  lancer le programme à partir du fichier `Main.java`.
 - **prototype_jar**  
   Ce dossier contient le fichier .jar ainsi que les bases de données pour le deuxième prototype de l'application _MaVille_ en ligne de commandes avec l'architecture et les spécifications demandées pour le devoir 2. Pour l'éxecuter, simplement télécharger le dossier et lancer le prototype.jar ne déplacer pas les fichiers JSON locale dans le dossier.  
 - **prototype.jar**  
