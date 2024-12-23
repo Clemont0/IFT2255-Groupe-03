@@ -17,10 +17,16 @@ import java.io.BufferedReader;
 import static org.example.ServerApp.getUsers;
 import static org.example.ServerApp.isLaterDate;
 
+/**
+ * Classe contenant toutes les interactions et actions possibles par un intervenant.
+ */
 public class MaVilleIntervenant {
     private static final int port = 8000;
 
-    static void afficherMenuIntervenant() {
+    /**
+     * Méthode permettant d'afficher le menu d'un intervenant.
+     */
+    public static void afficherMenuIntervenant() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -60,6 +66,9 @@ public class MaVilleIntervenant {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher les requêtes de travail actives.
+     */
     public static void voirRequetes() {
         List<RequeteTravail> requetes = obtenirRequetes();
         if (requetes.isEmpty()) {
@@ -79,7 +88,7 @@ public class MaVilleIntervenant {
         }
     }
 
-    public static List<RequeteTravail> obtenirRequetes() {
+    private static List<RequeteTravail> obtenirRequetes() {
         String url = "http://localhost:" + port + "/api/requetes";
         List<RequeteTravail> requetes = new ArrayList<>();
 
@@ -106,6 +115,11 @@ public class MaVilleIntervenant {
         return requetes;
     }
 
+    /**
+     * Méthode permettant de soumettre une candidature sur une requête de travail.
+     * @throws IOException
+     * @throws ParseException
+     */
     public static void soumettreCandidature() throws IOException, ParseException {
         boolean found1 = false,found2  = false;
         Map<String, List<Map<String, Object>>> users = getUsers();
@@ -183,6 +197,10 @@ public class MaVilleIntervenant {
         }
     }
 
+    /**
+     * Méthode permettant de retirer une candidature d'une requête de travail.
+     * @throws IOException
+     */
     public static void retirerCandidature() throws IOException {
         afficherCandidatures();
         boolean found = false;
@@ -227,6 +245,10 @@ public class MaVilleIntervenant {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher les candidatures actives.
+     * @throws IOException
+     */
     public static void afficherCandidatures() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Veuiller entrer votre ID personnels");
@@ -249,6 +271,11 @@ public class MaVilleIntervenant {
         }
     }
 
+    /**
+     * Méthode permettant de soumettre un nouveau projet.
+     * @throws IOException
+     * @throws ParseException
+     */
     public static void soumettreProjet() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
 
@@ -366,6 +393,11 @@ public class MaVilleIntervenant {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher les projets.
+     * @return Une List des projets sous forme de Map.
+     * @throws IOException
+     */
     public static List<Map<String, Object>> afficherProjets() throws IOException {
         List<Map<String, Object>> projets = ServerApp.chargerProjets();
         System.out.println("\n--- Liste des projets ---");
@@ -378,6 +410,11 @@ public class MaVilleIntervenant {
         return projets;
     }
 
+    /**
+     * Méthode permettant de modifier un certain projet.
+     * @throws IOException
+     * @throws ParseException
+     */
     public static void modifierProjet() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -452,6 +489,10 @@ public class MaVilleIntervenant {
         }
     }
 
+    /**
+     * Méthode permettant de procéder à l'inscription d'un intervenant.
+     * @throws IOException
+     */
     public static void inscription() throws IOException {
         Scanner scanner = new Scanner(System.in);
         while (true) {

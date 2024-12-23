@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Classe qui contient tout ce qui est relié aux intervenants.
+ */
 public class Intervenant extends Utilisateur {
     private String type;
     private String id;

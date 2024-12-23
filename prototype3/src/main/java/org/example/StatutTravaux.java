@@ -2,6 +2,9 @@ package org.example;
 
 import java.util.ArrayList;
 
+/**
+ * Classe permettant d'obtenir les statuts possibles d'un travail.
+ */
 public class StatutTravaux {
     private final ArrayList<String> statuts;
 

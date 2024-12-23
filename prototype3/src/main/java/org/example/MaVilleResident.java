@@ -19,10 +19,17 @@ import java.util.stream.Collectors;
 
 import static org.example.ServerApp.*;
 
-
+/**
+ * Classe contenant toutes les intéractions et actions possibles par un résident.
+ */
 public class MaVilleResident extends MaVille {
     private static final int port = 8000;
 
+    /**
+     * Méthode permettant de soumettre une requête de travail.
+     * @throws IOException
+     * @throws ParseException
+     */
     public static void soummettreRequete() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
 
@@ -98,6 +105,10 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher les candidatures actives dans l'application.
+     * @throws IOException
+     */
     public static void afficherCandidatures() throws IOException {
         Scanner scanner = new Scanner(System.in);
         MaVilleIntervenant.voirRequetes();
@@ -121,6 +132,11 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant de valider une candidature et d'apporter
+     * les modifications dans la base de données.
+     * @throws IOException
+     */
     public static void validerCandidature() throws IOException{
         afficherCandidatures();
 
@@ -220,6 +236,9 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher les travaux actifs dans l'application.
+     */
     public static void afficherTravaux() {
         try {
             String response = HTTPClient.get("http://localhost:" + port + "/travaux");
@@ -246,6 +265,9 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher les entraves actives dans l'application.
+     */
     public static void afficherEntraves() {
         try {
             String response = HTTPClient.get("http://localhost:" + port + "/entraves");
@@ -269,6 +291,11 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant d'obtenir les travaux actifs pendant les 3 prochains mois.
+     * @param travaux La liste des travaux à filtrer
+     * @return Une List des travaux filtrés.
+     */
     public static List<Travail> filtrer3mois(List<Travail> travaux) {
         List<Travail> travauxProchainsTroisMois = new ArrayList<>();
         LocalDate aujourdHui = LocalDate.now();
@@ -281,23 +308,47 @@ public class MaVilleResident extends MaVille {
         }
         return travauxProchainsTroisMois;
     }
+
+    /**
+     * Méthode permettant d'obtenir les travaux du quartier donné.
+     * @param travaux La liste des travaux à filtrer
+     * @param quartier Le quartier donné
+     * @return Une List des travaux correspondants au critère.
+     */
     public static List<Travail> filtrerQuartier(List<Travail> travaux, String quartier) {
         return travaux.stream()
                 .filter(travail -> quartier.equalsIgnoreCase(travail.getBoroughId()))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Méthode permettant d'obtenir les travaux d'un type donné.
+     * @param travaux La liste des travaux à filtrer
+     * @param type Le type donné
+     * @return Une List des travaux correspondants au critère.
+     */
     public static List<Travail> filtrerParType(List<Travail> travaux, String type) {
         return travaux.stream()
                 .filter(travail -> type.equalsIgnoreCase(travail.getReasonCategory()))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Méthode permettant d'obtenir les entraves d'une rue donnée.
+     * @param entraves La liste des entraves à filtrer
+     * @param rue La rue donnée
+     * @return Une List des entraves correspondantes au critère.
+     */
     public static List<Entraves> filtrerParRue(List<Entraves> entraves, String rue) {
         return entraves.stream()
                 .filter(entrave -> rue.equalsIgnoreCase(entrave.getShortName()))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Méthode permettant d'afficher le sous-menu de la liste d'entraves.
+     * @param entraves La liste des entraves
+     */
     public static void afficherSousMenuEntraves(List<Entraves> entraves) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -340,6 +391,10 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher le sous-menu des travaux lors d'un filtre.
+     * @param travaux La liste des travaux
+     */
     public static void afficherSousMenuFiltre(List<Travail> travaux) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -406,8 +461,7 @@ public class MaVilleResident extends MaVille {
         }
     }
 
-
-    public static List<Map<String, Object>> getNotifications(String email) throws JsonProcessingException {
+    private static List<Map<String, Object>> getNotifications(String email) throws JsonProcessingException {
         Map<String, List<Map<String, Object>>> users = ServerApp.getUsers();
         List<Map<String, Object>> residents = users.get("residents");
         Map<String, Object> user = null;
@@ -423,7 +477,7 @@ public class MaVilleResident extends MaVille {
         return notif;
     }
 
-    static void afficherNotifications(List<Map<String, Object>> notif) {
+    private static void afficherNotifications(List<Map<String, Object>> notif) {
         System.out.println();
         if (notif == null) {
             System.out.println("Aucune notification");
@@ -437,7 +491,12 @@ public class MaVilleResident extends MaVille {
         }
     }
 
-    static void afficherMenuResident(String email) throws JsonProcessingException {
+    /**
+     * Méthode permettant d'afficher le menu du résident avec le email donné.
+     * @param email Le courriel de l'utilisateur
+     * @throws JsonProcessingException
+     */
+    public static void afficherMenuResident(String email) throws JsonProcessingException {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -482,6 +541,11 @@ public class MaVilleResident extends MaVille {
             }
         }
     }
+
+    /**
+     * Méthode permettant d'afficher la liste des entraves.
+     * @param entraves La liste des entraves à afficher
+     */
     public static void afficherListeEntraves(List<Entraves> entraves) {
         for (Entraves entrave : entraves) {
                 System.out.println("ID Demande: " + entrave.getIdRequest());
@@ -492,6 +556,11 @@ public class MaVilleResident extends MaVille {
                 System.out.println("-------------------------------");
         }
     }
+
+    /**
+     * Méthode permettant d'afficher la liste des travaux.
+     * @param travaux La liste des travaux à afficher
+     */
     public static void afficherListeTravaux(List<Travail> travaux) {
         for (Travail travail : travaux) {
             System.out.println("ID: " + travail.getId());
@@ -504,6 +573,10 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant de procéder à l'inscription d'un résident.
+     * @throws IOException
+     */
     public static void inscription() throws IOException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -569,6 +642,10 @@ public class MaVilleResident extends MaVille {
     }
 
 
+    /**
+     * Méthode permettant d'ajouter une plage horaire pour un résident.
+     * @throws IOException
+     */
     public static void ajouterPlage() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Jour de la plage (format : yyyy-mm-dd) : ");
@@ -637,6 +714,10 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant d'afficher le sous-menu des plages horaires.
+     * @throws IOException
+     */
     public static void afficherSousMenuPlages() throws IOException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -661,6 +742,11 @@ public class MaVilleResident extends MaVille {
         }
     }
 
+    /**
+     * Méthode permettant de vérifier si un certain temps est valide.
+     * @param time Le temps à valider
+     * @return True si le temps donné est valide et False sinon.
+     */
     public static boolean isValidTime(String time) {
         if (time == null || !time.matches("\\d{2}:\\d{2}")) {
             return false;
@@ -671,6 +757,9 @@ public class MaVilleResident extends MaVille {
         return h >= 0 && h < 24 && minute >= 0 && minute < 60;
     }
 
+    /**
+     * Méthode permettant d'afficher les projets.
+     */
     public static void voirProjets() {
         List<Projet> projets = obtenirProjets();
         if (projets.isEmpty()) {
@@ -690,7 +779,8 @@ public class MaVilleResident extends MaVille {
             }
         }
     }
-    public static List<Projet> obtenirProjets() {
+
+    private static List<Projet> obtenirProjets() {
         String url = "http://localhost:" + port + "/api-projets";
         List<Projet> projets = new ArrayList<>();
 

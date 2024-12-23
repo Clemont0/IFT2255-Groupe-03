@@ -20,16 +20,25 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import io.javalin.http.Context;
 
+/**
+ * ServerApp est la classe dédiée au serveur. Elle comporte
+ * les méthodes servant à communiquer avec le client et
+ * obtenir les données.
+ */
 public class ServerApp {
     // si vous devez changer le port, utiliser plutôt le path: "src/main/resources/"
     // pour exécuter, car le path actuel est pour le fichier .jar
     // lancer ensuite Main.java
-    private static final String path = "src/main/resources/";
+    private static final String path = "database/";
     private static final String FILE_PATH = path + "requeteTravaux.json";
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final int port = 8000;
                                             // port 8000
     static Javalin app = Javalin.create().start(port);
+
+    /**
+     * Méthode permettant l'ouverture du serveur
+     */
     public static void startServer() {
 
         app.get("/api/login", ctx -> {
@@ -187,6 +196,11 @@ public class ServerApp {
         app.get("/entraves", ServerApp::getEntraves);
     }
 
+    /**
+     * Méthode permettant l'envoie d'une notification à partir
+     * du serveur.
+     * @param json Le string JSON de la notification
+     */
     public static void envoyerNotification(String json) {
         try {
             URL url = new URL("http://localhost:" + port + "/envoyer-notification");
@@ -212,6 +226,11 @@ public class ServerApp {
     }
 
 
+    /**
+     * Méthode permettant d'obtenir les utilistaurs de l'application.
+     * @return Une Map des utilisateurs où les clés "residents" et "intervenants"
+     * servent à obtenir les utilisateurs correspondants.
+     */
     public static Map<String, List<Map<String, Object>>> getUsers() {
         Map<String, List<Map<String, Object>>> fichierJson = new HashMap<>();
         List<Map<String, Object>> residents = new ArrayList<>();
@@ -323,7 +342,7 @@ public class ServerApp {
         return utilisateurs;
     }
 
-    public static Map<String, Object> jsonObjectToMap(JsonObject jsonObject) {
+    private static Map<String, Object> jsonObjectToMap(JsonObject jsonObject) {
         Map<String, Object> map = new HashMap<>();
         for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
             JsonElement value = entry.getValue();
@@ -338,7 +357,7 @@ public class ServerApp {
         return map;
     }
 
-    public static List<Object> jsonArrayToList(JsonArray jsonArray) {
+    private static List<Object> jsonArrayToList(JsonArray jsonArray) {
         List<Object> list = new ArrayList<>();
         for (JsonElement element : jsonArray) {
             if (element.isJsonObject()) {
@@ -352,14 +371,24 @@ public class ServerApp {
         return list;
     }
 
-    public static List<Map<String, Object>> chargerRequetes() throws IOException {
+    private static List<Map<String, Object>> chargerRequetes() throws IOException {
         return mapper.readValue(new File(FILE_PATH), new TypeReference<>() {});
     }
 
+    /**
+     * Méthode permettant de charger les projets actifs dans l'application.
+     * @return Une List des projets sous forme de Map.
+     * @throws IOException
+     */
     public static List<Map<String, Object>> chargerProjets() throws IOException {
         return mapper.readValue(new File(path + "projets.json"), new TypeReference<>() {});
     }
 
+    /**
+     * Méthode permettant de charger les candidatures actives dans l'application.
+     * @return Une List des candidatures sous forme de Map.
+     * @throws IOException
+     */
     public static List<Map<String, Object>> chargerCandidatures() throws IOException {
         return mapper.readValue(new File(path + "candidatures.json"), new TypeReference<>() {});
     }
@@ -368,19 +397,40 @@ public class ServerApp {
         mapper.writeValue(new File(FILE_PATH), requetes);
     }
 
+    /**
+     * Méthode permettant de sauvegarder les projets dans la base de données.
+     * @param requetes La liste des requêtes de travail
+     * @throws IOException
+     */
     public static void sauvegarderProjets(List<Map<String, Object>> requetes) throws IOException {
         mapper.writeValue(new File(path + "projets.json"), requetes);
     }
 
+    /**
+     * Méthode permettant de sauvegarder les utilisateurs dans la base de données.
+     * @param users La Map des utilisateurs
+     * @throws IOException
+     */
     public static void sauvegarderUsers(Map<String, List<Map<String, Object>>> users) throws IOException {
         mapper.writeValue(new File(path + "utilisateurs.json"), users);
     }
 
+    /**
+     * Méthode permettant de sauvegarder les candidatures dans la base de données.
+     * @param candidature La liste des candidatures
+     * @throws IOException
+     */
     public static void sauvegarderCandidatures(List<Map<String,Object>> candidature) throws IOException {
         mapper.writeValue(new File(path + "candidatures.json"), candidature);
     }
 
 
+    /**
+     * Méthode permettant de formatter en une List la réponse JSON de l'API.
+     * @param reponseJson Le string JSON de la réponse
+     * @return Une List des entraves obtenues par l'API.
+     * @throws Exception
+     */
     public static List<Entraves> reponseAPIExterne1(String reponseJson) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode noeudRacine = mapper.readTree(reponseJson);
@@ -408,6 +458,11 @@ public class ServerApp {
         return entraves;
     }
 
+    /**
+     * Méthode permettant de vérifier si une date a le bon format.
+     * @param date La date à valider
+     * @return True si la date est valide et False sinon
+     */
     public static boolean isValidDate(String date) {
         if (date == null || date.isEmpty()) {
             return false;
@@ -415,6 +470,14 @@ public class ServerApp {
         return date.matches("\\d{4}-\\d{2}-\\d{2}");
     }
 
+    /**
+     * Méthode permettant de vérifier si la date1 vient avant la date2. Autrement dit, vérifie
+     * si la date de fin est après la date de début.
+     * @param date1 Date de début
+     * @param date2 Date de fin
+     * @return True si date2 vient après date1, False sinon
+     * @throws ParseException
+     */
     public static boolean isLaterDate(String date1, String date2) throws ParseException {
         if (!isValidDate(date1) || !isValidDate(date2)) {
             System.out.println("Les dates sont erronées");
@@ -431,7 +494,13 @@ public class ServerApp {
         return flag;
     }
 
-    static String parseStringAsJSON(String raw) {
+    /**
+     * Méthode permettant de transformer un string en un JSON string pour
+     * ajouter une notification.
+     * @param raw Le string de données initiales
+     * @return JSON string
+     */
+    public static String parseStringAsJSON(String raw) {
         String[] objects = raw.substring(1, raw.length() - 1).trim().split("\\s*}\\s*,\\s*\\{\\s*");
         String json = "";
         int n = objects.length;
@@ -462,6 +531,9 @@ public class ServerApp {
         return "[" + json.substring(0, json.length() - 1) + "]";
     }
 
+    /**
+     * Méthode permettant d'arrêter le serveur.
+     */
     public static void stopServer() {
         if (app != null) {
             app.stop();
@@ -483,6 +555,12 @@ public class ServerApp {
         }
         return projets;
     }
+
+    /**
+     * Méthode permettant d'obtenir les projets actifs sur les 3 prochains mois.
+     * @param projets La liste des projets à filtrer
+     * @return Une List des projets des 3 prochains mois.
+     */
     public static List<Projet> filterProjetsDansLesTroisMois(List<Projet> projets) {
         List<Projet> projetsFiltrés = new ArrayList<>();
         LocalDate today = LocalDate.now();

@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe permettant la gestion des quartiers.
+ */
 public class Quartiers {
     private final ArrayList<String> quartiers;
 
@@ -38,6 +41,12 @@ public class Quartiers {
         return qs;
     }
 
+    /**
+     * Méthode permettant d'obtenir le quartier d'un résident en fonction de son code postal.
+     * @param codePostal Le code postal du résident
+     * @return Le quartier du résident.
+     * @throws IOException
+     */
     public static String getQuartierFromCP(String codePostal) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/codesPostaux.csv"));
         String line;

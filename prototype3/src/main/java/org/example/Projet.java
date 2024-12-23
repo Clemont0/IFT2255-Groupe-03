@@ -2,6 +2,9 @@ package org.example;
 
 import java.util.List;
 
+/**
+ * Classe contenant tout ce qui est relié à un projet, sa création et ses données.
+ */
 public class Projet {
     private int id;
     private String titre;

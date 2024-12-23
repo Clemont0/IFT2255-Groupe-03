@@ -2,6 +2,9 @@ package org.example;
 
 import java.io.*;
 
+/**
+ * Classe qui gère les identifiants uniques
+ */
 public class Id {
     private static String url = "src/main/resources/ids.csv";
 
@@ -24,6 +27,11 @@ public class Id {
         return out;
     }
 
+    /**
+     * Méthode permettant d'obtenir le prochain identifiant valide pour un projet.
+     * @return L'identifiant
+     * @throws IOException
+     */
     public static int nextProjetId() throws IOException {
         int[] ids = nextId();
         int pid = ids[0] + 1;
@@ -33,6 +41,11 @@ public class Id {
         return pid;
     }
 
+    /**
+     * Méthode permettant d'obtenir le prochain identifiant valide pour une requête de travail.
+     * @return L'identifiant
+     * @throws IOException
+     */
     public static int nextRequeteId() throws IOException {
         int[] ids = nextId();
         int pid = ids[0];
@@ -42,6 +55,11 @@ public class Id {
         return rid;
     }
 
+    /**
+     * Méthode permettant d'obtenir le prochain identifiant valide pour une candidature.
+     * @return L'identifiant
+     * @throws IOException
+     */
     public static int nextCandidateId() throws IOException {
         int[] ids = nextId();
         int pid = ids[0];

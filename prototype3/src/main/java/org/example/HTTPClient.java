@@ -5,8 +5,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Classe qui gère la connexion HTTP avec l'API.
+ */
 public class HTTPClient {
 
+    /**
+     * Méthode permettant de gérer la connexion entre le serveur et l'API.
+     * @param url Le lien de l'API
+     * @return Un String de la réponse de l'API.
+     * @throws Exception
+     */
     public static String get(String url) throws Exception {
         System.out.println("Requête GET vers : " + url);
         HttpURLConnection connexion = (HttpURLConnection) new URL(url).openConnection();

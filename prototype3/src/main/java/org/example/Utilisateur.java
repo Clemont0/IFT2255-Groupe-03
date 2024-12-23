@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Classe contenant tout ce qui est relié aux utilisateurs, leur création et leurs données
+ */
 public class Utilisateur {
     protected String nom;
     protected static String courriel;

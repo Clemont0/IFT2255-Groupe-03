@@ -3,6 +3,9 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe contenant tout ce qui est relié à la création d'un résident et ses données.
+ */
 public class Resident extends Utilisateur {
     private String adresse;
     private String postalCode;

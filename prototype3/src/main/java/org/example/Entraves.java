@@ -2,6 +2,9 @@ package org.example;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Classe contenant tout ce qui est relié aux entraves.
+ */
 public class Entraves {
 
     @JsonProperty("id_request")

@@ -5,6 +5,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    /**
+     * Méthode permettant de partir l'application MaVille.
+     * @param args Les arguments en entrée
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         new Thread(() -> ServerApp.startServer()).start();
         try {
@@ -17,6 +22,10 @@ public class Main {
     }
 
 
+    /**
+     * Méthode permettant d'afficher le menu principal.
+     * @throws IOException
+     */
     public static void displayMenu() throws IOException {
         Scanner scanner = new Scanner(System.in);
 

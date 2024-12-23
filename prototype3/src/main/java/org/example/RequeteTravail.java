@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Classe contenant tout ce qui est relié aux requêtes de travail, leur création et leurs données.
+ */
 public class RequeteTravail {
     private String id;
     private String titre;

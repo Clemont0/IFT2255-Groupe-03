@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Instant;
 
+/**
+ * Classe contenant tout ce qui est relié aux travaux, leur création et leurs données.
+ */
 public class Travail {
 
     @JsonProperty("id") // Correspond à "id" dans le JSON

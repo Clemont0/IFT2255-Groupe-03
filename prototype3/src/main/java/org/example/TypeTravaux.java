@@ -2,6 +2,9 @@ package org.example;
 
 import java.util.ArrayList;
 
+/**
+ * Classe permettant d'obtenir les types possibles d'un travail.
+ */
 public class TypeTravaux {
     private final ArrayList<String> types;
 
