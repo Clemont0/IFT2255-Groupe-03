@@ -1,0 +1,57 @@
+{
+  "residents": [
+    {
+      "nom": "Rick Sanchez Tremblay",
+      "dateDeNaissance": "1942-01-26",
+      "courriel": "RickSanchezT@mail.ca",
+      "mdp": "123456",
+      "phone": null,
+      "Adresse": "2310 Rue Bercy",
+      "postalCode": "H2K2V7"
+    },
+
+    {
+      "nom": "Antoinette Michelle",
+      "dateDeNaissance": "1995-02-10",
+      "courriel": "AntoinetteMichelle@mail.ca",
+      "mdp": "Cat1995",
+      "phone": null,
+      "Adresse": "4327 Rue de Charleroi",
+      "postalCode": "H1H1T4"
+    },
+
+    {
+
+      "nom": "Dipper Poulin",
+      "dateDeNaissance": "1999-08-31",
+      "courriel": "DipperPoulin@mail.ca",
+      "mdp": "motDePasse1",
+      "phone": null,
+      "Adresse": "4850 Chem. de la Côte des Neiges",
+      "postalCode": "H3V1G5"
+    }
+  ],
+  "intervenants": [
+    {
+      "nom": "Jean Dupont",
+      "courriel": "JeanDupont@intervenant.com",
+      "mdp": "intmotDePasse1",
+      "type": "Particulier",
+      "id": "12345678"
+    },
+    {
+      "nom": "Marie Curie",
+      "courriel": "MarieCurie@intervenant.com",
+      "mdp": "intmotDePasse2",
+      "type": "Entrepreneur privé",
+      "id": "87654321"
+    },
+    {
+      "nom": "MelonMusk",
+      "courriel": "MelonMusk@intervenant.com",
+      "mdp": "intmotDePasse3",
+      "type": "Entrepreneur public",
+      "id": "75315982"
+    }
+  ]
+}
