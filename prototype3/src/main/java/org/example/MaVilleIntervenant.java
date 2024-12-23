@@ -468,8 +468,8 @@ public class MaVilleIntervenant {
 
             System.out.println(
                     "1. Entreprise publique\n" +
-                            "2. Entrepreneur privé\n" +
-                            "3. Particulier"
+                    "2. Entrepreneur privé\n" +
+                    "3. Particulier"
             );
             System.out.print("Type : ");
             int typeChoix = scanner.nextInt();

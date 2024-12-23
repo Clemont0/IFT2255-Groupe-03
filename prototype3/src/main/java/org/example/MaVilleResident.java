@@ -100,7 +100,8 @@ public class MaVilleResident extends MaVille {
 
     public static void afficherCandidatures() throws IOException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Veuiller entrer l'ID de la requête dont vous souhaitez consulter les candidatures");
+        MaVilleIntervenant.voirRequetes();
+        System.out.print("Veuiller entrer l'ID de la requête dont vous souhaitez consulter les candidatures : ");
         String id = scanner.nextLine();
         int count = 1;
 
@@ -268,7 +269,7 @@ public class MaVilleResident extends MaVille {
         }
     }
 
-    public List<Travail> filtrer3mois(List<Travail> travaux) {
+    public static List<Travail> filtrer3mois(List<Travail> travaux) {
         List<Travail> travauxProchainsTroisMois = new ArrayList<>();
         LocalDate aujourdHui = LocalDate.now();
         LocalDate dansTroisMois = aujourdHui.plusMonths(3);
@@ -406,7 +407,7 @@ public class MaVilleResident extends MaVille {
     }
 
 
-    private static List<Map<String, Object>> getNotifications(String email) throws JsonProcessingException {
+    public static List<Map<String, Object>> getNotifications(String email) throws JsonProcessingException {
         Map<String, List<Map<String, Object>>> users = ServerApp.getUsers();
         List<Map<String, Object>> residents = users.get("residents");
         Map<String, Object> user = null;
@@ -716,15 +717,6 @@ public class MaVilleResident extends MaVille {
 
         return projets;
     }
-
-    public static boolean isValidDate(String date) {
-        if (date == null || date.isEmpty()) {
-            return false;
-        }
-        return date.matches("\\d{4}-\\d{2}-\\d{2}");
-    }
-
-
 }
 
 

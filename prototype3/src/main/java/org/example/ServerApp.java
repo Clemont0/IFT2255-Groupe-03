@@ -408,15 +408,11 @@ public class ServerApp {
         return entraves;
     }
 
-    public static boolean isValidDate(String dateStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.setLenient(false);
-        try {
-            sdf.parse(dateStr);
-            return true;
-        } catch (ParseException e) {
+    public static boolean isValidDate(String date) {
+        if (date == null || date.isEmpty()) {
             return false;
         }
+        return date.matches("\\d{4}-\\d{2}-\\d{2}");
     }
 
     public static boolean isLaterDate(String date1, String date2) throws ParseException {
