@@ -10,7 +10,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MaVilleIntervenantTest {
+/**
+ * Classe contenant certains tests pour des méthodes de MaVilleIntervenant.java
+ */
+public class MaVilleIntervenantTest {
 
     @Test
     void testVoirRequetesSansData() {

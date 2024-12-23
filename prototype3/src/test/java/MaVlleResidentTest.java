@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Classe contenant certains tests pour des méthodes de MaVilleResident.java
+ */
 public class MaVlleResidentTest {
 
      @Test

@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MaVilleTest {
+/**
+ * Classe contenant certains tests pour des méthodes de MaVille.java
+ */
+public class MaVilleTest {
 
     @Test
     void testFetch() {

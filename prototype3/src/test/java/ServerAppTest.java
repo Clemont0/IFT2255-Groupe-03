@@ -10,6 +10,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe contenant certains tests pour des méthodes de ServerApp.java
+ */
 public class ServerAppTest {
 
     @Test
