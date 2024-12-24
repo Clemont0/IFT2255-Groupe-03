@@ -25,8 +25,8 @@ Ce dossier contient le code pour une autre version du premier prototype, mais ce
   lancer le programme à partir du fichier `Main.java`.
 - **prototype_jar**  
   Ce dossier contient le fichier .jar ainsi que les bases de données pour le troisième prototype de l'application _MaVille_ en ligne de commandes avec l'architecture et les spécifications demandées pour le devoir 3. Pour l'éxecuter, simplement télécharger le dossier et lancer le MaVille.jar. Ne déplacer pas les fichiers JSON locale dans le dossier.  
-- **prototype.jar**  
-  Ce fichier `prototype.jar` (Java ARchive) est un fichier exécutable Java qui contient le dernier prototype de l'application _MaVille_. Pour l'exécuter, suivez les étapes ci-dessous :
+- **MaVille.jar**  
+  Ce fichier `MaVille.jar` (Java ARchive) est un fichier exécutable Java qui contient le dernier prototype de l'application _MaVille_. Pour l'exécuter, suivez les étapes ci-dessous :
 ### Étapes pour exécuter le fichier `.jar` :
 
 1. **Téléchargez le fichier `MaVille.jar`** sur votre machine.
