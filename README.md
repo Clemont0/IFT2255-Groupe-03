@@ -24,27 +24,27 @@ Ce dossier contient le code pour une autre version du premier prototype, mais ce
   Ce dossier contient le code pour le troisième prototype (le plus actuel) de l'application _MaVille_ en ligne de commandes seulement. Pour l'exécuter, simplement télécharger le dossier et
   lancer le programme à partir du fichier `Main.java`.
 - **prototype_jar**  
-  Ce dossier contient le fichier .jar ainsi que les bases de données pour le deuxième prototype de l'application _MaVille_ en ligne de commandes avec l'architecture et les spécifications demandées pour le devoir 2. Pour l'éxecuter, simplement télécharger le dossier et lancer le prototype.jar ne déplacer pas les fichiers JSON locale dans le dossier.  
+  Ce dossier contient le fichier .jar ainsi que les bases de données pour le troisième prototype de l'application _MaVille_ en ligne de commandes avec l'architecture et les spécifications demandées pour le devoir 3. Pour l'éxecuter, simplement télécharger le dossier et lancer le MaVille.jar. Ne déplacer pas les fichiers JSON locale dans le dossier.  
 - **prototype.jar**  
-  Ce fichier `prototype.jar` (Java ARchive) est un fichier exécutable Java qui contient le premier prototype de l'application _MaVille_. Pour l'exécuter, suivez les étapes ci-dessous :
+  Ce fichier `prototype.jar` (Java ARchive) est un fichier exécutable Java qui contient le dernier prototype de l'application _MaVille_. Pour l'exécuter, suivez les étapes ci-dessous :
 ### Étapes pour exécuter le fichier `.jar` :
 
-1. **Téléchargez le fichier `prototype.jar`** sur votre machine.
+1. **Téléchargez le fichier `MaVille.jar`** sur votre machine.
 
 2. **Ouvrez l'invite de commande ou le terminal** 
 
-3. **Changez de répertoire vers l'emplacement où se trouve le fichier `prototype.jar`**. Utilisez la commande `cd` pour vous déplacer dans le bon répertoire :
+3. **Changez de répertoire vers l'emplacement où se trouve le fichier `MaVille.jar`**. Utilisez la commande `cd` pour vous déplacer dans le bon répertoire :
    
    - **Sous Windows** :
      ```bash
-     cd C:\chemin\vers\le\répertoire\où\se\trouve\prototype.jar
+     cd C:\chemin\vers\le\répertoire\où\se\trouve\MaVille.jar
      ```
 
    - **Sous macOS/Linux** :
      ```bash
-     cd /chemin/vers/le/répertoire/où/se/trouve/prototype.jar
+     cd /chemin/vers/le/répertoire/où/se/trouve/MaVille.jar
      ```
 
-4. **Exécutez le fichier `prototype.jar`** en tapant la commande suivante :
+4. **Exécutez le fichier `MaVille.jar`** en tapant la commande suivante :
    ```bash
-   java -jar prototype.jar
+   java -jar MaVille.jar
