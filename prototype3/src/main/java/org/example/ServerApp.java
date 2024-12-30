@@ -29,7 +29,7 @@ public class ServerApp {
     // si vous devez changer le port, utiliser plutôt le path: "src/main/resources/"
     // pour exécuter, car le path actuel est pour le fichier .jar
     // lancer ensuite Main.java
-    private static final String path = "prototype3/src/main/resources/";
+    private static final String path = "src/main/resources/";
     private static final String FILE_PATH = path + "requeteTravaux.json";
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final int port = 8000;
