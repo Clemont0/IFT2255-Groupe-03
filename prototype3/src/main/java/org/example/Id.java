@@ -6,7 +6,7 @@ import java.io.*;
  * Classe qui gère les identifiants uniques
  */
 public class Id {
-    private static String url = "prototype3/src/main/resources/ids.csv";
+    private static String url = "src/main/resources/ids.csv";
 
     private static int[] nextId() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(url));
