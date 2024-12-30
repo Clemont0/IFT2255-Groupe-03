@@ -48,7 +48,7 @@ public class Quartiers {
      * @throws IOException
      */
     public static String getQuartierFromCP(String codePostal) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/codesPostaux.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader("prototype3/src/main/resources/codesPostaux.csv"));
         String line;
         String quartier = "";
         String areaCode = codePostal.toUpperCase().substring(0, 3);
